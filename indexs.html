@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>到位速递与生活服务港湾 | DaoWei Express & Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fbf8ee',
+                            100: '#f5edd5',
+                            200: '#ebd8aa',
+                            300: '#dfbe75',
+                            400: '#d4a34b',
+                            500: '#b8862d',
+                            600: '#9a6b22',
+                            700: '#7c531d',
+                            800: '#67431c',
+                            900: '#56381b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+        .glass-card {
+            background: rgba(24, 24, 27, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 163, 75, 0.2);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4a34b 0%, #b8862d 50%, #dfbe75 100%);
+        }
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #f5edd5 0%, #d4a34b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #56381b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b8862d; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col selection:bg-gold-500 selection:text-zinc-950">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-zinc-900 via-gold-900/40 to-zinc-900 text-gold-300 text-xs py-2 px-4 text-center border-b border-gold-500/20 flex justify-center items-center space-x-6">
+        <span><i class="fa-solid fa-clock-rotate-left mr-1 text-gold-400"></i> 限时特惠倒计时: <strong id="countdown" class="text-white">09时14分06秒</strong></span>
+        <span class="hidden md:inline">|</span>
+        <span class="hidden md:inline"><i class="fa-solid fa-phone-volume mr-1 text-gold-400"></i> 24小时热线/微信: <strong class="text-white">438-228-7888</strong></span>
+        <span class="hidden md:inline">|</span>
+        <span class="text-gold-200">蒙特利尔留学、搬家、家政、高端定制一站式服务</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center shadow-lg shadow-gold-500/20 text-zinc-950 font-bold text-xl">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight gold-text-gradient">到位速递 <span class="text-xs font-normal text-zinc-400 tracking-widest block">DAOWEI EXPRESS</span></h1>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-zinc-300">
+                <a href="#services" class="hover:text-gold-400 transition">热门服务</a>
+                <a href="#pricing" class="hover:text-gold-400 transition">价格标准</a>
+                <a href="#logistics" class="hover:text-gold-400 transition">全球直邮</a>
+                <a href="#handyman" class="hover:text-gold-400 transition">房屋装修/力工</a>
+                <a href="#about" class="hover:text-gold-400 transition">关于我们</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center space-x-4">
+                <button onclick="openChat()" class="relative hidden sm:flex items-center space-x-2 bg-zinc-900 border border-gold-500/40 hover:border-gold-400 px-4 py-2 rounded-full text-xs font-medium text-gold-300 transition shadow-sm hover:shadow-gold-500/10">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>在线客服咨询</span>
+                </button>
+                <a href="#booking" class="gold-gradient text-zinc-950 px-5 py-2.5 rounded-full text-xs font-bold shadow-lg shadow-gold-500/20 hover:opacity-90 transition transform hover:-translate-y-0.5">
+                    立即预约
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-zinc-800">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4a34b_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold mb-6">
+                <i class="fa-solid fa-star text-gold-400"></i>
+                <span>蒙特利尔最具信赖的华人综合服务标杆</span>
+            </span>
+            <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6">
+                专业服务，触手<span class="gold-text-gradient">到位</span>
+            </h2>
+            <p class="max-w-3xl mx-auto text-base sm:text-lg text-zinc-400 mb-10 leading-relaxed">
+                汇聚蒙特利尔本地最具口碑的精细搬家、机场接送、宜家家具组装、深度家政清洁、房屋室内装修、海外代购与全球免税直邮，为您打造尊贵、高效的海外无忧生活体验。
+            </p>
+
+            <!-- Search Bar Filter -->
+            <div class="max-w-3xl mx-auto glass-card p-3 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-3">
+                <div class="flex items-center w-full px-3 py-2 bg-zinc-900/80 rounded-xl border border-zinc-800">
+                    <i class="fa-solid fa-magnifying-glass text-gold-400 mr-3"></i>
+                    <input type="text" id="searchInput" placeholder="搜索您需要的服务（如：搬家、接机、清洁、网站设计...）" class="bg-transparent w-full focus:outline-none text-sm text-white placeholder-zinc-500" oninput="filterServices()">
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto">
+                    <select id="categoryFilter" onchange="filterServices()" class="bg-zinc-900 border border-zinc-800 text-zinc-300 text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 w-full md:w-48">
+                        <option value="all">全部分类</option>
+                        <option value="moving">搬家/接机</option>
+                        <option value="cleaning">家政/清洁</option>
+                        <option value="handyman">房屋维修/力工</option>
+                        <option value="tech">高端网站设计</option>
+                        <option value="shopping">海外代购/直邮</option>
+                    </select>
+                    <button onclick="filterServices()" class="gold-gradient text-zinc-950 px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap hover:opacity-90 transition">
+                        查找服务
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Category Tags -->
+            <div class="flex flex-wrap justify-center gap-2 mt-6 text-xs text-zinc-400">
+                <span class="text-zinc-500">热门标签:</span>
+                <button onclick="quickTagSearch('搬家')" class="hover:text-gold-400 transition underline">小型搬家</button>
+                <span>•</span>
+                <button onclick="quickTagSearch('接机')" class="hover:text-gold-400 transition underline">机场接送</button>
+                <span>•</span>
+                <button onclick="quickTagSearch('清洁')" class="hover:text-gold-400 transition underline">家居清洁</button>
+                <span>•</span>
+                <button onclick="quickTagSearch('装修')" class="hover:text-gold-400 transition underline">房屋装修/砸墙</button>
+                <span>•</span>
+                <button onclick="quickTagSearch('网站')" class="hover:text-gold-400 transition underline">高端网站设计</button>
+                <span>•</span>
+                <button onclick="quickTagSearch('冰酒')" class="hover:text-gold-400 transition underline">加拿大冰酒直邮</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid / Featured Classifieds -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+            <div>
+                <span class="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-2 block">Featured Portals</span>
+                <h3 class="text-3xl font-bold text-white">精选特惠与金牌服务项目</h3>
+            </div>
+            <p class="text-sm text-zinc-400 mt-2 md:mt-0">已有超过 <strong class="text-gold-400">98,058</strong> 位蒙城留学生与华人选择到位速递</p>
+        </div>
+
+        <!-- Service Cards Container -->
+        <div id="serviceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Card 1: Moving & Airport Pickup -->
+            <div data-category="moving" data-keywords="搬家 接机 宜家 家具组装 垃圾清运" class="glass-card rounded-2xl overflow-hidden group hover:border-gold-500/60 transition duration-300 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="relative h-48 bg-zinc-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="搬家服务" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/18181b/d4a34b?text=DaoWei+Moving'">
+                        <div class="absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-gold-300 font-medium border border-gold-500/30">
+                            热门特惠
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-zinc-950/90 px-2.5 py-1 rounded-lg text-xs font-bold text-gold-400">
+                            C$ 70.00 <span class="line-through text-zinc-500 text-[10px] font-normal">C$ 140</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                            <span><i class="fa-solid fa-phone text-gold-400 mr-1"></i> 438-228-7888</span>
+                            <span class="text-emerald-400 font-medium">98,058人已买</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-gold-400 transition">专业蒙特利尔机场接送与小型搬家</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed line-clamp-3">
+                            专业蒙特利尔机场接送、上学放学接送、小型搬运、学生搬家、宜家IKEA取货、家具组装、垃圾清运、商务私人用车，不收回程费，学生专享优惠！
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 flex items-center justify-between border-t border-zinc-800/60 mt-4">
+                    <span class="text-[11px] text-zinc-500">剩余 9小时14分</span>
+                    <button onclick="openBookingModal('专业蒙特利尔机场接送与小型搬家', '70')" class="gold-gradient text-zinc-950 px-4 py-2 rounded-xl text-xs font-bold hover:opacity-95 transition shadow-md shadow-gold-500/10">
+                        立即购买
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Cleaning & Handyman Services -->
+            <div data-category="cleaning" data-keywords="清洁 家政 保洁 灭虫 杀虫" class="glass-card rounded-2xl overflow-hidden group hover:border-gold-500/60 transition duration-300 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="relative h-48 bg-zinc-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="家政保洁" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/18181b/d4a34b?text=DaoWei+Cleaning'">
+                        <div class="absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-gold-300 font-medium border border-gold-500/30">
+                            规范化服务
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-zinc-950/90 px-2.5 py-1 rounded-lg text-xs font-bold text-gold-400">
+                            C$ 70.00 <span class="line-through text-zinc-500 text-[10px] font-normal">C$ 140</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                            <span><i class="fa-solid phone text-gold-400 mr-1"></i>室雅家居清洁/灭虫</span>
+                            <span class="text-emerald-400 font-medium">98,058人已买</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-gold-400 transition">室雅家居清洁与专业灭虫公司</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed line-clamp-3">
+                            规范化、专业化家政护理保洁机构。以良心作服务，年轻女移民专业打扫，家庭旅店深度清洁，专业灭虫道具绝对给力，给您洁净安全新家！
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 flex items-center justify-between border-t border-zinc-800/60 mt-4">
+                    <span class="text-[11px] text-zinc-500">剩余 9小时14分</span>
+                    <button onclick="openBookingModal('室雅家居清洁与专业灭虫服务', '70')" class="gold-gradient text-zinc-950 px-4 py-2 rounded-xl text-xs font-bold hover:opacity-95 transition shadow-md shadow-gold-500/10">
+                        立即购买
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3: High-end Website Design -->
+            <div data-category="tech" data-keywords="网站设计 高端品牌 平面设计 商业服务" class="glass-card rounded-2xl overflow-hidden group hover:border-gold-500/60 transition duration-300 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="relative h-48 bg-zinc-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="网站设计" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/18181b/d4a34b?text=DaoWei+WebDesign'">
+                        <div class="absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-gold-300 font-medium border border-gold-500/30">
+                            高端品牌
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-zinc-950/90 px-2.5 py-1 rounded-lg text-xs font-bold text-gold-400">
+                            ￥99.00 <span class="line-through text-zinc-500 text-[10px] font-normal">￥185</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                            <span><i class="fa-solid fa-laptop-code text-gold-400 mr-1"></i> 专业网页研发</span>
+                            <span class="text-emerald-400 font-medium">12人已买</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-gold-400 transition">专注高端网站设计与品牌策划</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed line-clamp-3">
+                            设计源于生活，细节成就品质。提供专业权威的网页设计、平面设计、包装设计、企业宣传片制作及各类商业服务技术支持。
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 flex items-center justify-between border-t border-zinc-800/60 mt-4">
+                    <span class="text-[11px] text-zinc-500">剩余 6小时14分</span>
+                    <button onclick="openBookingModal('专注高端网站设计与品牌策划', '99')" class="gold-gradient text-zinc-950 px-4 py-2 rounded-xl text-xs font-bold hover:opacity-95 transition shadow-md shadow-gold-500/10">
+                        立即购买
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 4: Global Direct Shipping & Icewine -->
+            <div data-category="shopping" data-keywords="冰酒 代购 免费直邮 回国礼品" class="glass-card rounded-2xl overflow-hidden group hover:border-gold-500/60 transition duration-300 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="relative h-48 bg-zinc-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="加拿大冰酒" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/18181b/d4a34b?text=Icewine+Shipping'">
+                        <div class="absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-gold-300 font-medium border border-gold-500/30">
+                            免费直邮中
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-zinc-950/90 px-2.5 py-1 rounded-lg text-xs font-bold text-gold-400">
+                            C$ 50.00 起
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                            <span><i class="fa-solid fa-gift text-gold-400 mr-1"></i> 回国礼品优选</span>
+                            <span class="text-gold-300 font-medium">热销中</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-gold-400 transition">加拿大正宗冰酒销售与免费直邮中国</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed line-clamp-3">
+                            精选加拿大优质回国礼品，冰酒、母婴用品（帕玛氏妊娠纹乳、Lansinoh吸管杯等），支持安全高效的中国免费直邮服务。
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 flex items-center justify-between border-t border-zinc-800/60 mt-4">
+                    <span class="text-[11px] text-zinc-500">包邮到家</span>
+                    <button onclick="openBookingModal('加拿大正宗冰酒销售与免费直邮', '50')" class="gold-gradient text-zinc-950 px-4 py-2 rounded-xl text-xs font-bold hover:opacity-95 transition shadow-md shadow-gold-500/10">
+                        立即咨询
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 5: Furniture Assembly & Handyman -->
+            <div data-category="handyman" data-keywords="宜家 家具维修 窗帘 安装" class="glass-card rounded-2xl overflow-hidden group hover:border-gold-500/60 transition duration-300 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="relative h-48 bg-zinc-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="家具组装维修" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/18181b/d4a34b?text=DaoWei+Handyman'">
+                        <div class="absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-gold-300 font-medium border border-gold-500/30">
+                            专业师傅
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-zinc-950/90 px-2.5 py-1 rounded-lg text-xs font-bold text-gold-400">
+                            C$ 20.00 / 小时起
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                            <span><i class="fa-solid fa-screwdriver-wrench text-gold-400 mr-1"></i> 438-228-7888</span>
+                            <span class="text-gold-300 font-medium">高效快捷</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-gold-400 transition">蒙特利尔专业装宜家家具与维修</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed line-clamp-3">
+                            专业组装宜家家具、旧家具翻新、破损家具维修、窗帘安装（$25起）。经验丰富，收费透明，20加币一小时起！
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 flex items-center justify-between border-t border-zinc-800/60 mt-4">
+                    <span class="text-[11px] text-zinc-500">明码标价</span>
+                    <button onclick="openBookingModal('蒙特利尔专业装宜家家具与维修', '20')" class="gold-gradient text-zinc-950 px-4 py-2 rounded-xl text-xs font-bold hover:opacity-95 transition shadow-md shadow-gold-500/10">
+                        立即预约
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 6: Renovation & Demolition / 砸墙力工 -->
+            <div data-category="handyman" data-keywords="房屋装修 房屋维修 砸墙 力工 新顺发" class="glass-card rounded-2xl overflow-hidden group hover:border-gold-500/60 transition duration-300 flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="relative h-48 bg-zinc-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="房屋装修砸墙" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/18181b/d4a34b?text=DaoWei+Renovation'">
+                        <div class="absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md px-3 py-1 rounded-full text-xs text-gold-300 font-medium border border-gold-500/30">
+                            15年施工经验
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-zinc-950/90 px-2.5 py-1 rounded-lg text-xs font-bold text-gold-400">
+                            C$ 35.00 起
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between text-xs text-zinc-400 mb-2">
+                            <span><i class="fa-solid fa-hammer text-gold-400 mr-1"></i> 新顺发装修团队</span>
+                            <span class="text-gold-300 font-medium">靠力量良心赚钱</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-gold-400 transition">新顺发房屋装修与砸墙力工队</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed line-clamp-3">
+                            承揽室内精品装修、砸墙、起地面、墙体破碎、开线槽、吊运水泥沙子建筑材料。15年网络口碑不转包，省去中间环节费用！
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 flex items-center justify-between border-t border-zinc-800/60 mt-4">
+                    <span class="text-[11px] text-zinc-500">免费上门估价</span>
+                    <button onclick="openBookingModal('新顺发房屋装修与砸墙力工', '35')" class="gold-gradient text-zinc-950 px-4 py-2 rounded-xl text-xs font-bold hover:opacity-95 transition shadow-md shadow-gold-500/10">
+                        立即预约
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Pricing Standard Section -->
+    <section id="pricing" class="py-20 bg-zinc-900/60 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-2 block">TRANSPARENT PRICING</span>
+                <h3 class="text-3xl font-bold text-white">蒙特利尔短途搬家与专业搬运价格表</h3>
+                <p class="text-sm text-zinc-400 mt-3">无隐藏收费，不收回程费，靠谱透明！微信 fundes | 电话 438-228-7888</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Tier 1 -->
+                <div class="glass-card p-8 rounded-2xl border border-zinc-800 flex flex-col justify-between">
+                    <div>
+                        <div class="text-gold-400 text-xs font-bold uppercase tracking-wider mb-2">轻量小型搬运</div>
+                        <h4 class="text-2xl font-bold text-white mb-4">Van & 1人服务</h4>
+                        <div class="text-3xl font-extrabold text-white mb-6">C$ 80 <span class="text-xs font-normal text-zinc-400">/ 2小时</span></div>
+                        <ul class="space-y-3 text-sm text-zinc-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 1位专业搬运工 + 1辆大VAN</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 适合留学生行李、单人床垫、箱包</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 宜家IKEA小型提货</li>
+                            <li class="flex items-center text-zinc-500"><i class="fa-solid fa-xmark text-zinc-600 mr-2"></i> 无电梯上下楼加$5/小时</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('轻量小型搬运 Van & 1人', '80')" class="w-full bg-zinc-800 hover:bg-gold-500 hover:text-zinc-950 text-white font-bold py-3 rounded-xl transition text-sm">
+                        选择此方案
+                    </button>
+                </div>
+
+                <!-- Tier 2 (Featured) -->
+                <div class="glass-card p-8 rounded-2xl border-2 border-gold-500/80 relative flex flex-col justify-between shadow-2xl shadow-gold-500/10 bg-zinc-900/90">
+                    <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 gold-gradient text-zinc-950 px-4 py-1 rounded-full text-xs font-bold shadow">
+                        留学生最爱推荐
+                    </div>
+                    <div>
+                        <div class="text-gold-400 text-xs font-bold uppercase tracking-wider mb-2">16尺中型卡车搬家</div>
+                        <h4 class="text-2xl font-bold text-white mb-4">卡车 + 2人工</h4>
+                        <div class="text-3xl font-extrabold text-white mb-6">C$ 240 <span class="text-xs font-normal text-zinc-400">/ 3小时</span></div>
+                        <ul class="space-y-3 text-sm text-zinc-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 16英尺厢式货车</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 2位强壮熟练工人配合搬运</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 适合1B1B/2B2B整家搬迁</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 钢琴/重物可按需附加</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('16尺中型卡车搬家 (2人工)', '240')" class="w-full gold-gradient text-zinc-950 font-bold py-3 rounded-xl transition text-sm shadow-lg shadow-gold-500/20 hover:opacity-95">
+                        立即预约卡车搬家
+                    </button>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="glass-card p-8 rounded-2xl border border-zinc-800 flex flex-col justify-between">
+                    <div>
+                        <div class="text-gold-400 text-xs font-bold uppercase tracking-wider mb-2">大型房屋/商业搬迁</div>
+                        <h4 class="text-2xl font-bold text-white mb-4">20尺卡车 + 3人工</h4>
+                        <div class="text-3xl font-extrabold text-white mb-6">C$ 500 <span class="text-xs font-normal text-zinc-400">/ 5小时</span></div>
+                        <ul class="space-y-3 text-sm text-zinc-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 20英尺大卡车</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 3位专业力工团队</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 适合大型House、公司搬迁</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> 装卸集装箱与重型家具</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('20尺大卡车搬迁 (3人工)', '500')" class="w-full bg-zinc-800 hover:bg-gold-500 hover:text-zinc-950 text-white font-bold py-3 rounded-xl transition text-sm">
+                        选择此方案
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Handyman & Renovation Details Section -->
+    <section id="handyman" class="py-20 bg-zinc-950 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-2 block">EXPERT HANDYMAN & RENOVATION</span>
+                    <h3 class="text-3xl font-bold text-white mb-6">无所不为的力工与房屋精品装修团队</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                        我们拥有15年施工经验，在蒙特利尔享誉极佳口碑。无论是砸墙、起地面、开门口、混泥土破碎、室内外大小型拆除，还是安家服务（安装窗帘、灯具、组装家具），我们始终坚信：<strong>技术和工具都没有人品重要，靠力量和良心赚钱！</strong>
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-zinc-900 p-4 rounded-xl border border-zinc-800">
+                            <div class="text-gold-400 font-bold text-lg mb-1"><i class="fa-solid fa-hammer mr-2"></i>砸墙与力工</div>
+                            <p class="text-xs text-zinc-400">砸墙、起地面、上料下残土、开线槽，电镐大锯切割。</p>
+                        </div>
+                        <div class="bg-zinc-900 p-4 rounded-xl border border-zinc-800">
+                            <div class="text-gold-400 font-bold text-lg mb-1"><i class="fa-solid fa-screwdriver mr-2"></i>安家与维修</div>
+                            <p class="text-xs text-zinc-400">窗帘$25起，家具翻新组装，电器与餐厅设备维修。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="tel:4382287888" class="gold-gradient text-zinc-950 px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-gold-500/20 inline-flex items-center">
+                            <i class="fa-solid fa-phone mr-2"></i> 立即拨打 438-228-7888
+                        </a>
+                        <span class="text-xs text-zinc-400">微信: <strong class="text-white">fundes</strong> | QQ: 640295755</span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-1 gold-gradient rounded-3xl opacity-20 blur-lg"></div>
+                    <div class="relative glass-card p-8 rounded-3xl border border-gold-500/30">
+                        <h4 class="text-xl font-bold text-white mb-4"><i class="fa-solid fa-list-check text-gold-400 mr-2"></i> 其它百宝箱服务项目</h4>
+                        <ul class="space-y-3 text-xs text-zinc-300">
+                            <li class="flex items-center justify-between py-2 border-b border-zinc-800">
+                                <span><i class="fa-solid fa-car text-gold-400 mr-2"></i> 商务私人用车 / 陪练路考</span>
+                                <span class="text-gold-400 font-medium">随时预约</span>
+                            </li>
+                            <li class="flex items-center justify-between py-2 border-b border-zinc-800">
+                                <span><i class="fa-solid fa-laptop text-gold-400 mr-2"></i> 高端网站设计 / 品牌策划</span>
+                                <span class="text-gold-400 font-medium">￥99起</span>
+                            </li>
+                            <li class="flex items-center justify-between py-2 border-b border-zinc-800">
+                                <span><i class="fa-solid fa-house-chimney text-gold-400 mr-2"></i> 家庭旅馆服务 / 垃圾清运</span>
+                                <span class="text-gold-400 font-medium">C$80起</span>
+                            </li>
+                            <li class="flex items-center justify-between py-2 border-b border-zinc-800">
+                                <span><i class="fa-solid fa-wine-bottle text-gold-400 mr-2"></i> 加拿大冰酒销售及免费回国直邮</span>
+                                <span class="text-gold-400 font-medium">免邮中国</span>
+                            </li>
+                            <li class="flex items-center justify-between py-2">
+                                <span><i class="fa-solid fa-heart text-gold-400 mr-2"></i> 陪看病就医 / 照看小孩 / 报税</span>
+                                <span class="text-gold-400 font-medium">用心服务</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking / Inquiry Modal Form Section -->
+    <section id="booking" class="py-20 bg-zinc-900/60 border-t border-zinc-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-gold-500/30 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <span class="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-2 block">ONLINE RESERVATION</span>
+                    <h3 class="text-3xl font-bold text-white mb-2">在线预约与快速咨询</h3>
+                    <p class="text-xs text-zinc-400">请填写您的需求信息，我们的客服人员将在10分钟内通过电话或微信与您确认。</p>
+                </div>
+
+                <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-medium text-zinc-300 mb-2">您的姓名 / 称呼 *</label>
+                            <input type="text" id="bookName" required placeholder="请输入您的姓名" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-zinc-300 mb-2">联系电话 (加拿大或回国手机) *</label>
+                            <input type="tel" id="bookPhone" required placeholder="例如: 438-228-7888" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-medium text-zinc-300 mb-2">微信号 (方便微信联络)</label>
+                            <input type="text" id="bookWechat" placeholder="微信号 / fundes" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-zinc-300 mb-2">选择服务项目 *</label>
+                            <select id="bookService" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-300 focus:outline-none focus:border-gold-500">
+                                <option value="小型搬家与接机">小型搬家与机场接送</option>
+                                <option value="卡车搬家服务">16尺/20尺卡车搬家服务</option>
+                                <option value="家政清洁保洁">家居清洁 / 灭虫服务</option>
+                                <option value="房屋装修与砸墙">房屋精品装修 / 砸墙力工</option>
+                                <option value="宜家家具组装">宜家家具组装 / 窗帘安装</option>
+                                <option value="高端网站设计">高端网站设计与品牌服务</option>
+                                <option value="加拿大冰酒直邮">加拿大冰酒及礼品免费直邮</option>
+                                <option value="其他百宝箱服务">其他个性化代办服务</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-zinc-300 mb-2">详细需求说明 (如地址、楼层、具体时间等)</label>
+                        <textarea id="bookNotes" rows="4" placeholder="请简要描述您的具体需求，例如：出发地与目的地地址、是否有电梯、预约时间..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500"></textarea>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <button type="submit" class="gold-gradient text-zinc-950 font-bold px-10 py-4 rounded-xl text-sm shadow-xl shadow-gold-500/20 hover:opacity-95 transition w-full sm:w-auto">
+                            提交预约申请
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-12 text-zinc-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4 flex items-center">
+                    <i class="fa-solid fa-bolt-lightning text-gold-400 mr-2"></i> 到位速递 DaoWei Express
+                </h4>
+                <p class="text-zinc-500 leading-relaxed mb-4">
+                    蒙特利尔最具影响力的华人生活服务门户与物流速递平台，致力于为留学生及海外同胞提供全方位、高效、诚信的高品质服务。
+                </p>
+                <div class="flex space-x-3 text-gold-400">
+                    <span class="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center border border-zinc-800"><i class="fa-solid fa-phone"></i></span>
+                    <span class="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center border border-zinc-800"><i class="fa-brands fa-weixin"></i></span>
+                    <span class="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center border border-zinc-800"><i class="fa-solid fa-envelope"></i></span>
+                </div>
+            </div>
+            <div>
+                <h5 class="text-white font-semibold mb-3">核心服务板块</h5>
+                <ul class="space-y-2 text-zinc-500">
+                    <li><a href="#services" class="hover:text-gold-400 transition">蒙特利尔小型搬家与接机</a></li>
+                    <li><a href="#services" class="hover:text-gold-400 transition">宜家取货与家具组装</a></li>
+                    <li><a href="#services" class="hover:text-gold-400 transition">室雅家居清洁与灭虫</a></li>
+                    <li><a href="#handyman" class="hover:text-gold-400 transition">新顺发房屋装修与砸墙力工</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-semibold mb-3">跨境电商与设计</h5>
+                <ul class="space-y-2 text-zinc-500">
+                    <li><a href="#services" class="hover:text-gold-400 transition">加拿大冰酒免费直邮中国</a></li>
+                    <li><a href="#services" class="hover:text-gold-400 transition">母婴用品全球直邮代购</a></li>
+                    <li><a href="#services" class="hover:text-gold-400 transition">专注高端网站设计与品牌策划</a></li>
+                    <li><a href="#services" class="hover:text-gold-400 transition">商业服务与法律财税资讯</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-semibold mb-3">联系我们 (Contact Us)</h5>
+                <p class="text-zinc-500 mb-2"><i class="fa-solid fa-phone text-gold-400 mr-2"></i>24小时热线: 438-228-7888</p>
+                <p class="text-zinc-500 mb-2"><i class="fa-brands fa-weixin text-gold-400 mr-2"></i>微信客服: fundes</p>
+                <p class="text-zinc-500 mb-2"><i class="fa-solid fa-envelope text-gold-400 mr-2"></i>QQ咨询: 640295755</p>
+                <p class="text-zinc-500"><i class="fa-solid fa-globe text-gold-400 mr-2"></i>官网: www.quebec-quebec.net</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-zinc-900 text-center text-zinc-600">
+            &copy; 2026 到位速递 DaoWei Express & Montreal Classifieds. All Rights Reserved. 蒙城留学在线客服版权所有。
+        </div>
+    </footer>
+
+    <!-- Online Customer Service Floating Widget Simulator -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Toggle Button -->
+        <button id="chatToggleBtn" onclick="toggleChatWindow()" class="relative w-14 h-14 rounded-full gold-gradient text-zinc-950 flex items-center justify-center shadow-2xl hover:scale-105 transition transform group">
+            <i class="fa-solid fa-headset text-2xl"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-zinc-950 text-[10px] text-white flex items-center font-bold">1</span>
+        </button>
+
+        <!-- Chat Popup Box -->
+        <div id="chatWindow" class="hidden absolute bottom-20 right-0 w-80 sm:w-96 glass-card rounded-3xl border border-gold-500/30 shadow-2xl overflow-hidden flex flex-col h-[480px] bg-zinc-950/95 transition-all duration-300">
+            <!-- Chat Header -->
+            <div class="bg-zinc-900 p-4 border-b border-zinc-800 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center font-bold text-zinc-950">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full border-2 border-zinc-900"></span>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">蒙城留学 & 到位速递客服</h4>
+                        <span class="text-[10px] text-emerald-400">当前在线 · 实时回复</span>
+                    </div>
+                </div>
+                <button onclick="toggleChatWindow()" class="text-zinc-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages Body -->
+            <div id="chatMessages" class="flex-grow p-4 overflow-y-auto space-y-4 text-xs">
+                <div class="flex items-start space-x-2">
+                    <div class="w-7 h-7 rounded-full gold-gradient flex-shrink-0 flex items-center justify-center font-bold text-zinc-950 text-xs">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-3 rounded-2xl text-zinc-200 max-w-[80%] leading-relaxed">
+                        您好！欢迎光临蒙特利尔<strong>到位速递与生活服务门户</strong>。请问有什么可以帮您？（支持咨询搬家、接机、清洁、房屋装修、冰酒直邮或网站设计）
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggested Quick Prompts -->
+            <div class="px-4 py-2 bg-zinc-900/40 flex flex-wrap gap-1.5 border-t border-zinc-900">
+                <button onclick="sendQuickChat('我想咨询小型搬家价格')" class="bg-zinc-900 hover:bg-gold-500 hover:text-zinc-950 border border-zinc-800 px-2.5 py-1 rounded-full text-[11px] text-zinc-300 transition">
+                    🚗 搬家价格
+                </button>
+                <button onclick="sendQuickChat('机场接送怎么收费？')" class="bg-zinc-900 hover:bg-gold-500 hover:text-zinc-950 border border-zinc-800 px-2.5 py-1 rounded-full text-[11px] text-zinc-300 transition">
+                    ✈️ 机场接送
+                </button>
+                <button onclick="sendQuickChat('房屋装修和砸墙力工')" class="bg-zinc-900 hover:bg-gold-500 hover:text-zinc-950 border border-zinc-800 px-2.5 py-1 rounded-full text-[11px] text-zinc-300 transition">
+                    🔨 房屋装修
+                </button>
+                <button onclick="sendQuickChat('加拿大冰酒怎么直邮中国？')" class="bg-zinc-900 hover:bg-gold-500 hover:text-zinc-950 border border-zinc-800 px-2.5 py-1 rounded-full text-[11px] text-zinc-300 transition">
+                    🍷 冰酒直邮
+                </button>
+            </div>
+
+            <!-- Chat Input Footer -->
+            <div class="p-3 bg-zinc-900 border-t border-zinc-800 flex items-center space-x-2">
+                <input type="text" id="chatInput" placeholder="输入您的问题..." onkeypress="if(event.key==='Enter') sendUserMessage()" class="flex-grow bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-gold-500">
+                <button onclick="sendUserMessage()" class="gold-gradient text-zinc-950 px-4 py-2 rounded-xl font-bold text-xs hover:opacity-95 transition">
+                    发送
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed top-24 right-6 z-50 transform translate-x-full transition-transform duration-300 bg-zinc-900 border border-gold-500/40 shadow-2xl rounded-2xl p-4 flex items-center space-x-3 text-xs text-white">
+        <div class="w-8 h-8 rounded-full gold-gradient flex items-center justify-center text-zinc-950 font-bold">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <h5 id="toastTitle" class="font-bold text-gold-300">操作成功</h5>
+            <p id="toastDesc" class="text-zinc-400">您的预约已提交，客服将尽快联系您！</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Countdown Timer
+        let totalSeconds = 9 * 3600 + 14 * 60 + 6;
+        setInterval(() => {
+            if (totalSeconds > 0) totalSeconds--;
+            let h = Math.floor(totalSeconds / 3600);
+            let m = Math.floor((totalSeconds % 3600) / 60);
+            let s = totalSeconds % 60;
+            document.getElementById('countdown').innerText = 
+                String(h).padStart(2, '0') + '时' + 
+                String(m).padStart(2, '0') + '分' + 
+                String(s).padStart(2, '0') + '秒';
+        }, 1000);
+
+        // Search & Filter Services
+        function filterServices() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const cards = document.querySelectorAll('#serviceGrid > div');
+
+            cards.forEach(card => {
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                const cat = card.getAttribute('data-category');
+                const textContent = card.innerText.toLowerCase();
+
+                const matchesQuery = query === '' || keywords.includes(query) || textContent.includes(query);
+                const matchesCategory = category === 'all' || cat === category;
+
+                if (matchesQuery && matchesCategory) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function quickTagSearch(tag) {
+            document.getElementById('searchInput').value = tag;
+            filterServices();
+        }
+
+        // Booking Modal Prep
+        function openBookingModal(serviceName, price) {
+            document.getElementById('bookService').value = serviceName;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+            showToast('已为您预选项目', `已选择「${serviceName}」，请填写联系方式完成预约。`);
+        }
+
+        // Handle Booking Form Submit
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('bookName').value;
+            const phone = document.getElementById('bookPhone').value;
+            const service = document.getElementById('bookService').value;
+
+            showToast('预约提交成功！', `感谢 ${name}，我们已收到您对「${service}」的预约，热线 438-228-7888 将优先与您联系。`);
+            document.getElementById('bookingForm').reset();
+        }
+
+        // Toast Notification
+        function showToast(title, desc) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastDesc').innerText = desc;
+            toast.classList.remove('translate-x-full');
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+            }, 4500);
+        }
+
+        // Online Customer Service Widget Logic
+        function toggleChatWindow() {
+            const chatWin = document.getElementById('chatWindow');
+            if (chatWin.classList.contains('hidden')) {
+                chatWin.classList.remove('hidden');
+            } else {
+                chatWin.classList.add('hidden');
+            }
+        }
+
+        function openChat() {
+            document.getElementById('chatWindow').classList.remove('hidden');
+        }
+
+        function sendQuickChat(text) {
+            document.getElementById('chatInput').value = text;
+            sendUserMessage();
+        }
+
+        function sendUserMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Append User Message
+            const userBubble = document.createElement('div');
+            userBubble.className = 'flex items-start justify-end space-x-2';
+            userBubble.innerHTML = `
+                <div class="bg-gold-500 text-zinc-950 font-medium p-3 rounded-2xl max-w-[80%] leading-relaxed">
+                    ${escapeHtml(text)}
+                </div>
+                <div class="w-7 h-7 rounded-full bg-zinc-800 flex-shrink-0 flex items-center justify-center font-bold text-zinc-300 text-xs">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            `;
+            chatMessages.appendChild(userBubble);
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate Bot Response with intelligent contextual replies
+            setTimeout(() => {
+                let reply = "收到您的咨询！蒙特利尔到位速递全天候为您服务。您可以直接拨打我们的24小时热线 **438-228-7888** 或添加微信 **fundes** 获得最快速的报价与安排！";
+                
+                if (text.includes('搬家') || text.includes('价')) {
+                    reply = "我们的短途搬家非常划算：1人+1van $80/2小时起；16尺卡车+2人工 $240/3小时起。不收回程费，无隐藏收费！请问您是几月几号搬家？出发地和目的地大概在哪个区呢？";
+                } else if (text.includes('接机') || text.includes('机场')) {
+                    reply = "专业蒙特利尔机场接送、上学放学接送火热进行中！价格优惠，准时靠谱。可加微信 fundes 预约航班时间和人数。";
+                } else if (text.includes('装修') || text.includes('砸墙') || text.includes('力工')) {
+                    reply = "新顺发房屋装修与砸墙力工队拥有15年丰富经验！承揽砸墙、起地面、室内外拆除及上料。良心靠谱不转包，师傅电话：438-228-7888。";
+                } else if (text.includes('冰酒') || text.includes('直邮')) {
+                    reply = "加拿大正宗冰酒及高品质回国礼品销售中，支持免费直邮中国！价格 $50 起。欢迎告知您需要的数量和收货地址。";
+                }
+
+                const botBubble = document.createElement('div');
+                botBubble.className = 'flex items-start space-x-2';
+                botBubble.innerHTML = `
+                    <div class="w-7 h-7 rounded-full gold-gradient flex-shrink-0 flex items-center justify-center font-bold text-zinc-950 text-xs">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-3 rounded-2xl text-zinc-200 max-w-[80%] leading-relaxed">
+                        ${reply}
+                    </div>
+                `;
+                chatMessages.appendChild(botBubble);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 800);
+        }
+
+        function escapeHtml(string) {
+            return string.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
+</body>
+</html>
