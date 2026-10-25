@@ -2,62 +2,570 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title> 马德里回国行李托运、寄行李回国、行李快递回国、空运行李、回国搬家跨省搬家、境内搬家、省际货运、加拿大境内托运散货集运、拼箱托运、跨境集运代运
-包裹转运、国际快递、文件回国快递 留学生毕业回国、海归行李托运 毕业季寄行李、退房搬家、行李打包清仓 新移民落地行李、华人回国探亲行李 回国甩卖/带不走的行李用）
-主打你的 $1.8/磅 或 $2/磅 核心优势，让用户产生“便宜、划算”的直观印象：低价寄行李、行李回国最省钱专线 按磅计费、平价空运 百公里最便宜、高性价比回国物流 无隐藏费用、平价搬家 门到门服务 (Door to Door)、上门取货/上门收件、送货到门、全程免动手双清包税（如果是包税渠道）、代办报关、一站式物流安全不丢件、顺丰授权合作伙伴（如果是顺丰授权渠道）、靠谱华人快递 免费行李寄存（提供短期仓储是极大加分项）蒙特利尔寄中国、蒙特利尔回国行李 蒙特利尔到多伦多物流/搬家、多伦多回蒙特利尔 渥太华行李回国、加东加西境内托运
-• Montreal Luggage Shipping、Montreal International Moving快递寄行李UPS全球文件大庄最低价行李免费取件· 4天必达到位速递 微信fundes 到位速递
-到位速递官网 / 微信fundes UPS全球文件大庄 UPS国际快递大庄 fundes 微信客服 北美文件回国快递到位速递 文件寄回国 4天必达 全球文件极速互寄 国际文件特快专递 96小时极速送达
-海外文件直航回国 留学文件/毕业证 4天到国内 海关绿色快速清关通道 UPS全球文件大庄最低价 国际快递一级大庄优惠 行李免费上门取件 海外行李限时免费上门揽收 国际快递省钱攻略
-留学生行李回国免费取件 大宗文件/合同特惠折扣 海外毕业证回国认证快递 留学生回国行李寄送 美国/加拿大/英国文件寄回国 商业合同/法律文书跨国加急 护照/签证/身份证明跨国快递 跨国搬家与行李托运服务 海外公证文件极速寄回- GDX-西班-74806232</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>到位速递 (DaoWei Express) - 全球 10 万城市物流与蒙特利尔同城急送特惠平台</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; padding: 30px; background: #f8fafc; color: #1e293b; }
-        .card { max-width: 700px; margin: 0 auto; background: white; border: 2px solid #0f172a; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        h2 { border-bottom: 2px solid #0f172a; padding-bottom: 10px; margin-top: 0; }
-        .grid { display: flex; justify-content: space-between; margin: 20px 0; }
-        .box { width: 48%; background: #f1f5f9; padding: 15px; border-radius: 8px; }
-        .footer { margin-top: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 10px; }
+        .glass-header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .buttons-section { max-width: 1280px; margin: 40px auto; padding: 20px; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .buttons-container { width: 100%; }
+        .buttons-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #f97316; padding-bottom: 10px; }
+        .buttons-header h3 { font-size: 18px; font-weight: bold; color: #1e293b; }
+        .badge { background: #ffedd5; color: #c2410c; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .search-box { width: 100%; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 14px; outline: none; margin-bottom: 20px; transition: all 0.3s; }
+        .search-box:focus { border-color: #f97316; box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1); }
+        .grid-buttons { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; max-height: 280px; overflow-y: auto; padding-right: 5px; }
+        .btn-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; text-align: center; border-radius: 8px; font-size: 12px; color: #334155; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+        .btn-item:hover { background: #f97316; color: white; border-color: #f97316; transform: translateY(-1px); }
+        .train-row { display: grid; grid-template-columns: 1fr 2fr 1fr 1fr 1.5fr 1.5fr; gap: 10px; align-items: center; background: rgba(30, 41, 59, 0.7); padding: 10px 15px; border-radius: 8px; border: 1px solid rgba(51, 65, 85, 0.5); font-size: 13px; color: white; }
+        .truck-id { font-weight: bold; color: #fb923c; font-family: monospace; }
+        .route-path { font-weight: 600; }
+        .freq-tag { background: rgba(249, 115, 22, 0.2); color: #fb923c; padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+        .status-running { color: #4ade80; font-weight: 600; }
     </style>
 </head>
-<body>
-    <div class="card">
-        <h2> 马德里 寄行李UPS全球文件大庄一件免费取件· 4天必达到位速递  客服微信fundes   美国9176210118 温哥华客服 7783832208  魁北克客服4382287888 </h2>
-        <p><strong>客服微信 fundes  唯一运单号:</strong> GDX-西班-74806232</p>
-        <p><strong>承运商 到位速递:</strong> DHL Express 绿通直航 (4天必达)</p>
-        <div class="grid">
-            <div class="box">
-                <h3>发件地 (From)</h3>
-                <p><strong>西班牙 (Spain) - 核心枢纽 - 马德里 (Madrid)</strong></p>
-                <p>海外发件人 / 默认联系地址</p>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+
+    <!-- 顶部滚动公告栏 -->
+    <div class="bg-amber-600 text-white text-xs font-semibold py-2 px-4 text-center tracking-wide flex items-center justify-center space-x-2">
+        <i class="fa-solid fa-bullhorn"></i>
+        <span><strong>到位速递公告：</strong> 蒙特利尔全岛及南岸 Brossard 同城急送限时特惠，留学生行李转运专线全场 8.5 折！全球 10 万城市物流网络已全面打通。</span>
+    </div>
+
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 glass-header border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-amber-600 to-orange-600 text-white p-2.5 rounded-2xl shadow-lg">
+                    <i class="fa-solid fa-truck-fast text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">到位速递</span>
+                    <span class="block text-xs font-medium text-gray-500">DaoWei Express · 全球 10 万城市物流服务网络</span>
+                </div>
             </div>
-            <div class="box">
-                <h3>目的地 (To)</h3>
-                <p><strong>中国 (China) - 北京</strong></p>
-                <p>收件人 / 国内接收地址</p>
+                    
+            <div class="hidden lg:flex items-center space-x-2 bg-orange-50 border border-orange-100 px-4 py-2 rounded-full text-xs font-semibold text-orange-600 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-orange-600 animate-ping"></span>
+                <span>全球实时调度中：<span id="ticker-route" class="underline">加载中...</span></span>
+                <span id="ticker-countdown" class="bg-orange-600 text-white px-2 py-0.5 rounded-full text-[10px]">10s</span>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="openEstimatorModal()" class="bg-gray-900 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-md flex items-center cursor-pointer">
+                    <i class="fa-solid fa-calculator mr-1.5"></i> 运费在线估算
+                </button>
+                <span class="text-xs bg-amber-50 text-amber-800 px-3 py-2 rounded-xl font-bold border border-amber-200 hidden sm:inline-block">🇨🇳 / 🇫🇷 / 🇬🇧 蒙特利尔 · 全球</span>
             </div>
         </div>
-        <p><strong>文件类型:</strong> 商业合同/法律文书/标书 (1.0kg以内)</p>
-        <p><strong>全包运费:</strong> ¥ 609 RMB</p>
-        <p><strong>承诺时效:</strong> 航班起飞后 96 小时 (4天) 必达</p>
-        <div class="footer">
-            生成时间: 2026/10/21 21:46:25 | 寄行李回国寄中国搬家跨省全球$1.8/磅微信fundes 到位速递'顺丰到位门到门运输回国行李微信fundes  毕业季/回国搬家/跨境集运不用愁！到位速递为你提供超省心的门到门服务！查詢熱線：朝鲜大+东部客服+1 4382287888  朝鲜大+西部客服+1（778）3832208  美国纽约+1（917）621-0118 纽约（917）6210118 温哥7783832208 欧洲 +372）81524808 蒙特利尔清洁保洁专业公司回国行李.top，核心主营（到位速递/到位国际物流）： 主打卖点： $1.8/磅起、最快 4 天到家、门到门运输、20年 0 丢件（安全保障）。
-服务人群： 多伦多/蒙特利尔/温哥华及全美留学生、华人搬家、行李回国、跨境集运代运。
-计费规则： 最小 1kg 起运（无条件进位），取体积重与实重最大值；单件建议 le 20	ext{kg}，长宽高之和 le 150	ext{cm}；不包税服务，含空运、报关及宅配费。
-延伸/合作生态业务（生活与便民服务）：
-涵盖美容医美、个人/公司报税、房屋水电维修、餐饮外卖小吃、海运代购等。
-建议： 不要在同一篇快递宣传单中巨细靡遗列出所有小吃和**细节，而是作不包稅服務費用含空運費、報關費及宅配費用，計費方式採『體積重量』及『實際貨物重量』擇大者的重量數值計價。
-到位速递世界最安全快递 20年0丢件 纽约31-22 Union St , Flushing, NY 11354美国地址  英国地址  法国地址  德国地址  伦敦  滑铁卢5889 Chem. de la Côte-des-Neiges, Montréal, QC H3S 1Z2​
-② 重量計算若遇小數點，無條件進位以整數計算，朝鲜大+集運代運最低1公斤起運，若您的商品只有0.5公斤，以最低1公斤收費。
+    </header>
 
-③ 切記包裹一般單件箱建議重量約20kg，長寬高之總和不超過150cm， 若已超過包裹尺寸**不適用上述運費計算，請洽詢客服。美容服务：
-**、日式**、光疗甲、延长甲、雕花**、法式**、脚部**、手部护理、脚部护理、角质护理、手部SPA、脚部SPA、修甲、卸甲、指甲修复、彩绘指甲、贴钻指甲、婚礼**、节日**、儿童
-多伦多集运公司 / 中国寄多伦多快递 / 多伦多淘宝转运 / 多伦多双清包税专线 / 多伦多买淘宝怎么运 / 多伦多私人物品海运 / 多伦多跨省搬家公司 / 多伦多运家具回温哥华 / 多伦多到蒙特利尔搬家专线 / 多伦多至渥太华长途托运 / 多伦多寄零食敏感货到加拿大  回国行李托运、寄行李回国、行李快递回国、空运行李、回国搬家跨省搬家、境内搬家、省际货运、加拿大境内托运散货集运、拼箱托运、跨境集运代运
-包裹转运、国际快递、文件回国快递 留学生毕业回国、海归行李托运 毕业季寄行李、退房搬家、行李打包清仓 新移民落地行李、华人回国探亲行李 回国甩卖/带不走的行李用）
-主打你的 $1.8/磅 或 $2/磅 核心优势，让用户产生“便宜、划算”的直观印象：低价寄行李、行李回国最省钱专线 按磅计费、平价空运 百公里最便宜、高性价比回国物流 无隐藏费用、平价搬家 门到门服务 (Door to Door)、上门取货/上门收件、送货到门、全程免动手双清包税（如果是包税渠道）、代办报关、一站式物流安全不丢件、顺丰授权合作伙伴（如果是顺丰授权渠道）、靠谱华人快递 免费行李寄存（提供短期仓储是极大加分项）蒙特利尔寄中国、蒙特利尔回国行李 蒙特利尔到多伦多物流/搬家、多伦多回蒙特利尔 渥太华行李回国、加东加西境内托运
-• Montreal Luggage Shipping、Montreal International Moving快递寄行李UPS全球文件大庄最低价行李免费取件· 4天必达到位速递 微信fundes 到位速递
-到位速递官网 / 微信fundes UPS全球文件大庄 UPS国际快递大庄 fundes 微信客服 北美文件回国快递到位速递 文件寄回国 4天必达 全球文件极速互寄 国际文件特快专递 96小时极速送达
-海外文件直航回国 留学文件/毕业证 4天到国内 海关绿色快速清关通道 UPS全球文件大庄最低价 国际快递一级大庄优惠 行李免费上门取件 海外行李限时免费上门揽收 国际快递省钱攻略
-留学生行李回国免费取件 大宗文件/合同特惠折扣 海外毕业证回国认证快递 留学生回国行李寄送 美国/加拿大/英国文件寄回国 商业合同/法律文书跨国加急 护照/签证/身份证明跨国快递 跨国搬家与行李托运服务 海外公证文件极速寄回
+    <!-- 英雄区 (Hero Section) -->
+    <section class="relative bg-gray-900 text-white py-24 overflow-hidden">
+        <div class="absolute inset-0 opacity-45">
+            <img id="hero-bg-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80" alt="DaoWei Logistics Hub" class="w-full h-full object-cover transition-all duration-1000">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span id="hero-badge" class="inline-block bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 shadow-lg">全球 10 万城市华人首选快递与物流专家</span>
+            <h1 id="hero-title" class="text-4xl sm:text-6xl font-black tracking-tight mb-4 drop-shadow-lg">让每一次跨国与同城交付准时到位</h1>
+            <p id="hero-desc" class="max-w-2xl mx-auto text-lg text-gray-200 mb-8 font-light">覆盖全球 100,000 个城市与物流网点，专为蒙特利尔及海外华人、留学生与跨境电商提供安全、快捷的国际转运与同城货运服务。</p>
+
+            <!-- 搜索与筛选面板 -->
+            <div class="max-w-4xl mx-auto bg-white p-4 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-3 text-gray-800">
+                <div class="flex-1 flex items-center px-4 py-3 bg-gray-50 rounded-xl border border-gray-100">
+                    <i class="fa-solid fa-location-dot text-orange-600 mr-3"></i>
+                    <select id="filter-zone" onchange="filterServices()" class="w-full bg-transparent outline-none text-sm font-semibold cursor-pointer">
+                        <option value="">全球 10 万城市及蒙特利尔/南岸全境</option>
+                    </select>
+                </div>
+                <div class="flex-1 flex items-center px-4 py-3 bg-gray-50 rounded-xl border border-gray-100">
+                    <i class="fa-solid fa-box-open text-orange-600 mr-3"></i>
+                    <select id="filter-category" onchange="filterServices()" class="w-full bg-transparent outline-none text-sm font-semibold cursor-pointer">
+                        <option value="">所有服务分类</option>
+                        <option value="同城快递">同城快递与急送</option>
+                        <option value="留学生搬家">留学生行李寄存搬家</option>
+                        <option value="国际转运">国际转运与回国海空运</option>
+                        <option value="商业B2B">商业大宗与仓储配送</option>
+                        <option value="机场接送">机场接送与行李随行</option>
+                    </select>
+                </div>
+                <button onclick="filterServices()" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-3 rounded-xl transition flex items-center justify-center shadow-md cursor-pointer">
+                    <i class="fa-solid fa-magnifying-glass mr-2"></i> 检索全球网点
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 车站/班次大屏动态监控专区 -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <div class="bg-slate-900 rounded-2xl p-6 shadow-xl border border-slate-800">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-white font-bold text-lg flex items-center"><i class="fa-solid fa-truck-fast text-orange-500 mr-2"></i> 全球干线与蒙特利尔同城车次动态监控大屏</h3>
+                <span class="text-xs text-slate-400">实时智能调度中 🟢</span>
+            </div>
+            <div id="board-rows" class="space-y-2">
+                <!-- 动态生成行 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 主体产品/服务网格区 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight">全球 100,000 项物流专线与服务网络</h2>
+                <p class="text-sm text-gray-500">当前符合条件的路线共 <span id="service-count" class="font-semibold text-orange-600">100000</span> 项（每页显示 200 项，共 <span id="total-pages-label" class="font-semibold text-orange-600">500</span> 页）</p>
+            </div>
+            
+            <!-- 运单号追踪快捷栏 -->
+            <div class="flex items-center space-x-3 bg-white border border-gray-200 rounded-2xl p-2 shadow-sm">
+                <i class="fa-solid fa-barcode text-orange-600 ml-2"></i>
+                <input type="text" id="quick-track-input" placeholder="输入运单号 (例: DW8888)" class="text-xs outline-none bg-gray-50 px-3 py-2 rounded-lg border border-gray-100 w-40">
+                <button onclick="simulateTracking()" class="bg-gray-900 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-orange-600 transition cursor-pointer">运单追踪</button>
+            </div>
+        </div>
+
+        <!-- 路线与产品卡片网格 -->
+        <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+        <!-- 分页控制器 -->
+        <div id="pagination-container" class="flex flex-wrap justify-center items-center gap-1.5 mt-12"></div>
+    </main>
+
+    <!-- ==================== 底部：生成 3299 个按钮区域 ==================== -->
+    <div class="buttons-section" id="buttons-area">
+        <div class="buttons-container">
+            <div class="buttons-header">
+                <h3>📁 全球 10 万城市网页与分站快速访问按钮</h3>
+                <span class="badge">总计: 3299 个核心网页</span>
+            </div>
+            <p style="color:#888; font-size:13px; margin-bottom:15px;">您可以在下方直接搜索单号或点击任意按钮查看对应的全球城市分站网页（1.html ~ 3299.html）：</p>
+                
+            <!-- 实时搜索框 -->
+            <input type="text" id="btn-search" class="search-box" placeholder="输入编号或城市关键词快速检索（例如：888 或 巴黎/纽约/蒙特利尔）..." oninput="filterButtons()">
+                
+            <!-- 3299个按钮网格容器 -->
+            <div class="grid-buttons" id="buttons-grid"></div>
         </div>
     </div>
+
+    <!-- 弹窗 1：路线详情与预约 -->
+    <div id="service-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 relative shadow-2xl">
+            <button onclick="closeModal('service-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="bg-orange-100 text-orange-600 p-3 rounded-xl"><i class="fa-solid fa-box text-xl"></i></div>
+                <div>
+                    <h3 id="modal-title" class="font-bold text-lg text-gray-900">服务路线详情</h3>
+                    <span id="modal-category" class="text-xs bg-orange-50 text-orange-600 px-2.5 py-0.5 rounded-full font-semibold">同城快递</span>
+                </div>
+            </div>
+            <p id="modal-desc" class="text-sm text-gray-600 mb-6 leading-relaxed">这里是具体的服务说明、时效保障及条款。</p>
+            
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 mb-6 space-y-2 text-xs">
+                <div class="flex justify-between"><span class="text-gray-500">基础参考运费：</span><span id="modal-price" class="font-black text-orange-600 text-sm">$15.00 CAD 起</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">标准时效：</span><span class="font-semibold text-gray-800">1 - 3 小时 / 国际 3-7 天</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">保险保障：</span><span class="font-semibold text-emerald-600">✓ 全程保价服务 ✓ 中英法多语客服</span></div>
+            </div>
+
+            <div class="flex space-x-3">
+                <button onclick="triggerBookingSuccess()" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl text-sm transition shadow-md cursor-pointer">确认预约此线路</button>
+                <button onclick="closeModal('service-modal')" class="px-5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl text-sm transition cursor-pointer">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗 2：运费在线估算器 -->
+    <div id="estimator-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeModal('estimator-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="bg-amber-100 text-amber-600 p-3 rounded-xl"><i class="fa-solid fa-calculator text-xl"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg text-gray-900">到位速递运费智能估算</h3>
+                    <p class="text-xs text-gray-500">输入包裹重量与全球起止城市计算实时价格</p>
+                </div>
+            </div>
+            
+            <div class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">物品重量 (kg)</label>
+                    <input type="number" id="calc-weight" value="5" min="1" max="500" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl outline-none">
+                </div>
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">服务类型</label>
+                    <select id="calc-type" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl outline-none cursor-pointer">
+                        <option value="express">全球同城急送 (Same-Day)</option>
+                        <option value="moving">留学生行李搬家</option>
+                        <option value="air">回国空运专线</option>
+                        <option value="b2b">商业大宗配送</option>
+                    </select>
+                </div>
+                <div class="bg-orange-50 border border-orange-100 p-4 rounded-xl text-center">
+                    <span class="text-gray-600 block mb-1">预计测算费用：</span>
+                    <span id="calc-result" class="text-2xl font-black text-orange-600">$25.00 CAD</span>
+                </div>
+            </div>
+
+            <div class="mt-6 flex space-x-3">
+                <button onclick="calculateCost()" class="flex-1 bg-gray-900 hover:bg-orange-600 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer">重新计算</button>
+                <button onclick="closeModal('estimator-modal')" class="px-5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl text-xs transition cursor-pointer">完成</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部版权 -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-20 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-3">
+            <p>© 2026 到位速递 (DaoWei Express) 版权所有. 全球 10 万城市物流、蒙特利尔同城快递、行李寄存与跨境转运专家。</p>
+            <p class="text-gray-500">核心服务区域：全球主要国际枢纽城市及蒙特利尔岛内 (Downtown, Plateau, McGill, Concordia, Côte-des-Neiges, Griffintown) 与南岸 Brossard 等大区。</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 逻辑：10万全球城市数据、3299个按钮及大屏动态刷新 -->
+    <script>
+        // 全球 100,000 项数据生成引擎 (使用100%版权安全的合法 Unsplash 静态开源图库)
+        (function generate100kDaoWeiDatabase() {
+            const globalZones = [
+                "蒙特利尔 - 市中心与麦吉尔大学 (Downtown & McGill)",
+                "蒙特利尔 - 南岸 Brossard 华人核心区 / 太阳广场",
+                "中国北京 - 朝阳区国贸物流枢纽",
+                "中国上海 - 浦东新区跨境电商转运中心",
+                "中国广州 - 白云区国际仓储配送基地",
+                "法国巴黎 - 戴高乐机场华人快运专线",
+                "英国伦敦 - 威斯敏斯特留学生行李服务点",
+                "美国纽约 - 曼哈顿国际物流直达网点",
+                "加拿大温哥华 - 列治文华人转运中心",
+                "日本东京 - 新宿国际同城急送网点"
+            ];
+
+            const categories = ["同城快递", "留学生搬家", "国际转运", "商业B2B", "机场接送"];
+
+            const serviceTitles = [
+                "全球文件与小件跨境闪送服务",
+                "留学生全球开学行李寄存与上门搬家",
+                "回国行李海运/空运拼箱专线",
+                "华人超市及生鲜商户同城冷链配送",
+                "宜家家具提货与专业组装上门",
+                "跨境电商一件代发与海外仓储配送",
+                "全球机场接送行李随车托运直达公寓",
+                "B2B商业急件及大宗货物全球专车直送"
+            ];
+
+            // 100% 安全合法的 Unsplash 官方开源图片链接 (无版权侵权风险)
+            const safeImages = [
+                "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80", 
+                "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=600&q=80", 
+                "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80", 
+                "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80", 
+                "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=600&q=80"  
+            ];
+
+            window.getTotalCount = () => 100000;
+            window.getServiceByIndex = function(i) {
+                const zone = globalZones[i % globalZones.length];
+                const cat = categories[i % categories.length];
+                const titleBase = serviceTitles[i % serviceTitles.length];
+                return {
+                    id: i + 1,
+                    title: `[到位速递] ${titleBase} #${i + 1}`,
+                    zone: zone,
+                    category: cat,
+                    price: 15 + (i * 13) % 250,
+                    rating: parseFloat((4.80 + (i % 20) * 0.01).toFixed(2)),
+                    image: safeImages[i % safeImages.length],
+                    ordersCount: 200 + (i * 43) % 1500,
+                    description: `全球服务网点：${zone}。到位速递为您提供标准的${cat}服务，配备中英法三语调度员，全天候保障安全准时达。`
+                };
+            };
+        })();
+
+        let currentPage = 1;
+        const pageSize = 200; // 每页展示200项，10万项共500页
+        let currentRotationIndex = 0;
+        let countdownTimer = 10;
+        let timerInterval = null;
+
+        function initWebsite() {
+            initZoneDropdown();
+            renderPaginatedServices();
+            startRotationEngine();
+            renderButtons();
+            generateBatchRows();
+        }
+
+        function initZoneDropdown() {
+            const zones = [
+                "蒙特利尔 - 市中心与麦吉尔大学 (Downtown & McGill)",
+                "蒙特利尔 - 南岸 Brossard 华人核心区 / 太阳广场",
+                "中国北京 - 朝阳区国贸物流枢纽",
+                "中国上海 - 浦东新区跨境电商转运中心",
+                "中国广州 - 白云区国际仓储配送基地",
+                "法国巴黎 - 戴高乐机场华人快运专线",
+                "英国伦敦 - 威斯敏斯特留学生行李服务点",
+                "美国纽约 - 曼哈顿国际物流直达网点",
+                "加拿大温哥华 - 列治文华人转运中心",
+                "日本东京 - 新宿国际同城急送网点"
+            ];
+            const select = document.getElementById('filter-zone');
+            select.innerHTML = '<option value="">全球 10 万城市及蒙特利尔/南岸全境</option>';
+            zones.forEach(z => {
+                select.innerHTML += `<option value="${z}">${z}</option>`;
+            });
+        }
+
+        function renderPaginatedServices() {
+            const totalCount = window.getTotalCount();
+            const selectedZone = document.getElementById('filter-zone').value;
+            const selectedCat = document.getElementById('filter-category').value;
+
+            let filteredIndices = [];
+            for (let i = 0; i < totalCount; i++) {
+                const sZone = i % 10; 
+                const sCat = i % 5;   
+                const zonesList = [
+                    "蒙特利尔 - 市中心与麦吉尔大学 (Downtown & McGill)", "蒙特利尔 - 南岸 Brossard 华人核心区 / 太阳广场",
+                    "中国北京 - 朝阳区国贸物流枢纽", "中国上海 - 浦东新区跨境电商转运中心",
+                    "中国广州 - 白云区国际仓储配送基地", "法国巴黎 - 戴高乐机场华人快运专线",
+                    "英国伦敦 - 威斯敏斯特留学生行李服务点", "美国纽约 - 曼哈顿国际物流直达网点",
+                    "加拿大温哥华 - 列治文华人转运中心", "日本东京 - 新宿国际同城急送网点"
+                ];
+                const catsList = ["同城快递", "留学生搬家", "国际转运", "商业B2B", "机场接送"];
+
+                const currentZ = zonesList[sZone];
+                const currentC = catsList[sCat];
+
+                if ((!selectedZone || currentZ === selectedZone) && (!selectedCat || currentC === selectedCat)) {
+                    filteredIndices.push(i);
+                }
+            }
+
+            const totalFiltered = filteredIndices.length;
+            const totalPages = Math.ceil(totalFiltered / pageSize) || 1;
+            if (currentPage > totalPages) currentPage = 1;
+
+            const startIndex = (currentPage - 1) * pageSize;
+            const endIndex = Math.min(startIndex + pageSize, totalFiltered);
+            
+            const currentList = [];
+            for (let i = startIndex; i < endIndex; i++) {
+                currentList.push(window.getServiceByIndex(filteredIndices[i]));
+            }
+
+            document.getElementById('service-count').textContent = totalFiltered;
+            document.getElementById('total-pages-label').textContent = totalPages;
+            
+            renderServicesGrid(currentList);
+            renderPaginationControls(totalPages);
+        }
+
+        function renderServicesGrid(list) {
+            const grid = document.getElementById('services-grid');
+            if (list.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-16 text-center text-gray-400"><i class="fa-solid fa-box-open text-4xl mb-3"></i><p>未找到符合条件的全球物流路线与网点。</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = list.map(s => `
+                <div onclick="openServiceModal(${s.id})" class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col">
+                    <div class="relative h-48 overflow-hidden bg-gray-100">
+                        <img src="${s.image}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-gray-900 text-xs font-bold px-2.5 py-1 rounded-full shadow">${s.zone.split(' - ')[0] || s.zone}</span>
+                        <span class="absolute top-3 right-3 bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow"><i class="fa-solid fa-star mr-1 text-[10px]"></i>${s.rating}</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-orange-600 mb-1 uppercase tracking-wider"><i class="fa-solid fa-tag mr-1"></i>${s.category}</div>
+                            <h3 class="font-bold text-gray-900 line-clamp-1 mb-2 group-hover:text-orange-600 transition">${s.title}</h3>
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-4">${s.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                            <div>
+                                <span class="text-lg font-black text-orange-600">$${s.price}</span>
+                                <span class="text-xs text-gray-400"> CAD 起</span>
+                            </div>
+                            <span class="text-xs bg-orange-50 text-orange-600 px-2.5 py-1 rounded-lg font-semibold group-hover:bg-orange-600 group-hover:text-white transition">立即预约</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPaginationControls(totalPages) {
+            const container = document.getElementById('pagination-container');
+            if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+            let html = `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="px-3.5 py-2 bg-white border rounded-xl text-xs font-medium hover:bg-gray-50 cursor-pointer">上一页</button>`;
+            
+            let startPage = Math.max(1, currentPage - 3);
+            let endPage = Math.min(totalPages, startPage + 6);
+
+            if (startPage > 1) {
+                html += `<button onclick="goToPage(1)" class="px-3 py-2 bg-white border rounded-xl text-xs font-medium hover:bg-gray-50 cursor-pointer">1</button>`;
+                if (startPage > 2) html += `<span class="px-2 text-gray-400">...</span>`;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                html += `<button onclick="goToPage(${i})" class="px-3.5 py-2 rounded-xl text-xs font-bold cursor-pointer ${currentPage === i ? 'bg-orange-600 text-white shadow-md' : 'bg-white border hover:bg-gray-50'}">${i}</button>`;
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) html += `<span class="px-2 text-gray-400">...</span>`;
+                html += `<button onclick="goToPage(${totalPages})" class="px-3.5 py-2 bg-white border rounded-xl text-xs font-medium hover:bg-gray-50 cursor-pointer">${totalPages}</button>`;
+            }
+
+            html += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="px-3.5 py-2 bg-white border rounded-xl text-xs font-medium hover:bg-gray-50 cursor-pointer">下一页</button>`;
+            container.innerHTML = html;
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderPaginatedServices();
+            window.scrollTo({ top: 500, behavior: 'smooth' });
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            renderPaginatedServices();
+            window.scrollTo({ top: 500, behavior: 'smooth' });
+        }
+
+        function filterServices() {
+            currentPage = 1;
+            renderPaginatedServices();
+        }
+
+        // 弹窗与交互控制
+        function openServiceModal(id) {
+            const service = window.getServiceByIndex(id - 1);
+            document.getElementById('modal-title').textContent = service.title;
+            document.getElementById('modal-category').textContent = service.category;
+            document.getElementById('modal-desc').textContent = service.description;
+            document.getElementById('modal-price').textContent = `$${service.price}.00 CAD 起`;
+            document.getElementById('service-modal').classList.remove('hidden');
+        }
+
+        function openEstimatorModal() {
+            document.getElementById('estimator-modal').classList.remove('hidden');
+            calculateCost();
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function triggerBookingSuccess() {
+            alert('预约成功！到位速递全球调度中心已收到您的物流线路请求，中英法三语调度专员将在15分钟内与您联系确认。');
+            closeModal('service-modal');
+        }
+
+        function simulateTracking() {
+            const val = document.getElementById('quick-track-input').value.trim();
+            if (!val) {
+                alert('请输入有效的运单号进行查询。');
+                return;
+            }
+            alert(`运单号 [${val}] 查询成功：当前状态【已从全球枢纽分拨中心发出，正由专员派送中】，预计准时送达！`);
+        }
+
+        function calculateCost() {
+            const weight = parseFloat(document.getElementById('calc-weight').value) || 5;
+            const type = document.getElementById('calc-type').value;
+            let base = 15;
+            if (type === 'moving') base = 45;
+            if (type === 'air') base = 60;
+            if (type === 'b2b') base = 90;
+
+            const total = base + (weight * 2.5);
+            document.getElementById('calc-result').textContent = `$${total.toFixed(2)} CAD`;
+        }
+
+        // 顶部轮播调度引擎
+        function startRotationEngine() {
+            if (timerInterval) clearInterval(timerInterval);
+            updateHeroContent();
+            countdownTimer = 10;
+
+            timerInterval = setInterval(() => {
+                countdownTimer--;
+                document.getElementById('ticker-countdown').textContent = countdownTimer + 's';
+                if (countdownTimer <= 0) {
+                    currentRotationIndex = (currentRotationIndex + 1) % 5000;
+                    updateHeroContent();
+                    countdownTimer = 10;
+                }
+            }, 1000);
+        }
+
+        function updateHeroContent() {
+            const currentItem = window.getServiceByIndex(currentRotationIndex);
+            document.getElementById('ticker-route').textContent = `${currentItem.zone} - ${currentItem.category}`;
+            document.getElementById('hero-bg-img').src = currentItem.image;
+            document.getElementById('hero-title').textContent = `全球城市专属物流专线：${currentItem.category}`;
+            document.getElementById('hero-desc').textContent = currentItem.description;
+        }
+
+        // 自动生成 1 到 3299 的按钮
+        function renderButtons() {
+            const grid = document.getElementById('buttons-grid');
+            if (!grid) return;
+            let html = '';
+            for (let i = 1; i <= 3299; i++) {
+                html += `<a href="${i}.html" class="btn-item" target="_blank" title="全球城市网页 ${i}">网页 ${i}</a>`;
+            }
+            grid.innerHTML = html;
+        }
+
+        // 实时搜索过滤按钮
+        function filterButtons() {
+            const keyword = document.getElementById('btn-search').value.toLowerCase().trim();
+            const buttons = document.getElementById('buttons-grid').getElementsByClassName('btn-item');
+                
+            for (let i = 0; i < buttons.length; i++) {
+                const text = buttons[i].textContent.toLowerCase();
+                if (text.includes(keyword)) {
+                    buttons[i].style.display = 'flex';
+                } else {
+                    buttons[i].style.display = 'none';
+                }
+            }
+        }
+
+        // 车站/班次大屏动态刷新逻辑
+        const globalCitiesList = ["蒙特利尔岛内", "南岸 Brossard", "中国北京", "中国上海", "法国巴黎", "英国伦敦", "美国纽约", "加拿大多伦多", "日本东京", "中国广州"];
+        const truckTypesList = ["53尺全封闭干线大卡", "26尺尾板厢式货车", "48尺标箱冷藏卡", "24尺城际快运卡", "国际航空宽体货机"];
+        const statusList = ["🟢 全球高速干线对开中", "🔵 返程满载疾驰中", "🟡 当日折返整备中", "🟢 准点到达国际分拨中心"];
+
+        function generateBatchRows() {
+            const container = document.getElementById('board-rows');
+            if (!container) return;
+            let html = '';
+            for(let i = 1; i <= 5; i++) {
+                let origin = globalCitiesList[Math.floor(Math.random() * globalCitiesList.length)];
+                let dest = globalCitiesList[Math.floor(Math.random() * globalCitiesList.length)];
+                let truckId = `DW-${Math.floor(Math.random() * 89999) + 10000}`;
+                let truck = truckTypesList[Math.floor(Math.random() * truckTypesList.length)];
+                let status = statusList[Math.floor(Math.random() * statusList.length)];
+                html += `
+                    <div class="train-row">
+                        <div class="truck-id">${truckId}</div>
+                        <div class="route-path">${origin} ⇄ ${dest}</div>
+                        <div><span class="freq-tag">全球班次</span></div>
+                        <div style="font-size:12px; color:#cbd5e1;">2026年10月专线</div>
+                        <div style="font-size:11px; color:#94a3b8;">${truck}</div>
+                        <div class="status-running">${status}</div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        window.onload = initWebsite;
+    </script>
 </body>
 </html>
