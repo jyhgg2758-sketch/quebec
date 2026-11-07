@@ -1,850 +1,584 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>到位速递 (DaoWei Express) - 全球 10 万城市物流与蒙特利尔同城急送特惠平台</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .glass-header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .buttons-section { max-width: 1280px; margin: 40px auto; padding: 20px; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        .buttons-container { width: 100%; }
-        .buttons-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #f97316; padding-bottom: 10px; }
-        .buttons-header h3 { font-size: 18px; font-weight: bold; color: #1e293b; }
-        .badge { background: #ffedd5; color: #c2410c; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
-        .search-box { width: 100%; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 14px; outline: none; margin-bottom: 20px; transition: all 0.3s; }
-        .search-box:focus { border-color: #f97316; box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1); }
-        .grid-buttons { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; max-height: 280px; overflow-y: auto; padding-right: 5px; }
-        .btn-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 10px; text-align: center; border-radius: 8px; font-size: 12px; color: #334155; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
-        .btn-item:hover { background: #f97316; color: white; border-color: #f97316; transform: translateY(-1px); }
-        .train-row { display: grid; grid-template-columns: 1fr 2fr 1fr 1fr 1.5fr 1.5fr; gap: 10px; align-items: center; background: rgba(30, 41, 59, 0.7); padding: 10px 15px; border-radius: 8px; border: 1px solid rgba(51, 65, 85, 0.5); font-size: 13px; color: white; }
-        .truck-id { font-weight: bold; color: #fb923c; font-family: monospace; }
-        .route-path { font-weight: 600; }
-        .freq-tag { background: rgba(249, 115, 22, 0.2); color: #fb923c; padding: 2px 8px; border-radius: 4px; font-size: 11px; }
-        .status-running { color: #4ade80; font-weight: 600; }
-    </style>
+
+    <meta charset="utf-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>贝尼(El Beni)海运搬家出国/回国,家具行李海运公司-到位海运1.8/一公斤搬家</title><link rel='canonical' href="../../network/city/404.html">	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+
+	<meta name="renderer" content="webkit">
+
+	<link rel="shortcut icon" href="../../res/favicon.ico" />
+
+	<link rel="stylesheet" href="../../res/style.css">
+
+	<!--<script type="text/javascript">if(window!=top)top.location.href=window.location.href;</script>-->
+
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
-
-    <!-- 顶部滚动公告栏 -->
-    <div class="bg-amber-600 text-white text-xs font-semibold py-2 px-4 text-center tracking-wide flex items-center justify-center space-x-2">
-        <i class="fa-solid fa-bullhorn"></i>
-        <span><strong>到位速递公告：</strong> 蒙特利尔全岛及南岸 Brossard 同城急送限时特惠，留学生行李转运专线全场 8.5 折！全球 10 万城市物流网络已全面打通。</span>
-    </div>
-
-    <!-- 导航栏 -->
-    <header class="sticky top-0 z-50 glass-header border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-amber-600 to-orange-600 text-white p-2.5 rounded-2xl shadow-lg">
-                    <i class="fa-solid fa-truck-fast text-xl"></i>
-                </div>
-                <div>
-                    <span class="text-2xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">到位速递</span>
-                    <span class="block text-xs font-medium text-gray-500">DaoWei Express · 全球 10 万城市物流服务网络</span>
-                </div>
-            </div>
-                    
-            <div class="hidden lg:flex items-center space-x-2 bg-orange-50 border border-orange-100 px-4 py-2 rounded-full text-xs font-semibold text-orange-600 shadow-inner">
-                <span class="w-2 h-2 rounded-full bg-orange-600 animate-ping"></span>
-                <span>全球实时调度中：<span id="ticker-route" class="underline">加载中...</span></span>
-                <span id="ticker-countdown" class="bg-orange-600 text-white px-2 py-0.5 rounded-full text-[10px]">10s</span>
-            </div>
-
-           <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>到位速递 - 5级运费在线估算</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-
-    <!-- 触发按钮 -->
-    <div class="flex items-center space-x-3">
-        <button onclick="openEstimatorModal()" class="bg-gray-900 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-md flex items-center cursor-pointer">
-            <i class="fa-solid fa-calculator mr-1.5"></i> 运费在线估算
-        </button>
-    </div>
-
-    <!-- 5级估算弹窗 & 动态到位速递客服面板 -->
-    <div id="estimatorModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        
-        <div class="relative flex flex-col md:flex-row w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden min-h-[520px]">
-            
-            <!-- 关闭按钮 -->
-            <button onclick="closeEstimatorModal()" class="absolute top-3 right-3 z-30 text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
-            <!-- 左侧：到位速递5级流程页面区域 -->
-            <div class="flex-1 p-6 md:p-8 flex flex-col justify-between">
-                <div>
-                    <!-- 品牌 Banner 与实时公告 -->
-                    <div class="bg-orange-50 border border-orange-200 rounded-xl p-3 mb-5 flex items-start space-x-3">
-                        <div class="bg-orange-500 text-white text-xs font-black px-2 py-1 rounded shrink-0 mt-0.5">到位速递</div>
-                        <div class="text-xs text-gray-700 leading-tight">
-                            <span class="font-bold text-orange-600">限时特惠：</span>蒙特利尔全岛及南岸 Brossard 同城急送，留学生行李转运专线全场 <span class="font-bold text-red-600">8.5 折</span>！全球 10 万城市物流网络已全面打通。
-                        </div>
-                    </div>
-
-                    <!-- 顶部进度条 -->
-                    <div class="mb-5">
-                        <div class="flex justify-between text-xs font-bold text-gray-500 mb-1.5">
-                            <span class="text-orange-600">步骤 <span id="currentStepText">1</span> / 5</span>
-                            <span id="stepTitleText" class="text-gray-800">选择寄件目的地</span>
-                        </div>
-                        <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-                            <div id="progressBar" class="bg-orange-500 h-full w-1/5 transition-all duration-300"></div>
-                        </div>
-                    </div>
-
-                    <!-- 5级页面内容区 -->
-                    <div id="stepContent">
-                        <!-- Level 1 -->
-                        <div class="step-page active-step" data-step="1" data-title="选择寄件目的地">
-                            <h3 class="text-base font-bold text-gray-800 mb-2"><i class="fa-solid fa-plane-departure text-orange-500 mr-2"></i>第一级：始发与目的地选择</h3>
-                            <p class="text-xs text-gray-500 mb-3">支持蒙特利尔同城急送及全球 10 万城市跨国转运：</p>
-                            <div class="space-y-2">
-                                <select class="w-full p-2.5 border rounded-xl text-xs font-medium focus:ring-2 focus:ring-orange-500 outline-none bg-gray-50">
-                                    <option>蒙特利尔 - 市中心与麦吉尔大学 (Downtown & McGill)</option>
-                                    <option>蒙特利尔 - 南岸 Brossard (同城专线)</option>
-                                    <option>加拿大其他城市 (Canada Wide)</option>
-                                    <option>国际线：中国/欧洲/英国等 (Global)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Level 2 -->
-                        <div class="step-page hidden" data-step="2" data-title="选择物品类型">
-                            <h3 class="text-base font-bold text-gray-800 mb-2"><i class="fa-solid fa-boxes-packing text-orange-500 mr-2"></i>第二级：货物品类划分</h3>
-                            <p class="text-xs text-gray-500 mb-3">享受留学生行李转运专属 8.5 折优惠：</p>
-                            <div class="grid grid-cols-2 gap-2 text-xs">
-                                <label class="border p-3 rounded-xl flex items-center cursor-pointer hover:border-orange-500 font-medium">
-                                    <input type="radio" name="goods" class="mr-2 accent-orange-500" checked> 留学生行李 / 个人物品 (8.5折)
-                                </label>
-                                <label class="border p-3 rounded-xl flex items-center cursor-pointer hover:border-orange-500 font-medium">
-                                    <input type="radio" name="goods" class="mr-2 accent-orange-500"> 同城文件 / 急送包裹
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Level 3 -->
-                        <div class="step-page hidden" data-step="3" data-title="输入包裹重量与体积">
-                            <h3 class="text-base font-bold text-gray-800 mb-2"><i class="fa-solid fa-weight-hanging text-orange-500 mr-2"></i>第三级：重量与体积数据</h3>
-                            <div class="space-y-3">
-                                <div>
-                                    <label class="text-xs font-bold text-gray-600 block mb-1">预计总重量 (kg)</label>
-                                    <input type="number" placeholder="如: 23" class="w-full p-2 border rounded-xl text-xs focus:ring-2 focus:ring-orange-500 outline-none">
-                                </div>
-                                <div class="grid grid-cols-3 gap-2">
-                                    <input type="number" placeholder="长(cm)" class="p-2 border rounded-xl text-xs">
-                                    <input type="number" placeholder="宽(cm)" class="p-2 border rounded-xl text-xs">
-                                    <input type="number" placeholder="高(cm)" class="p-2 border rounded-xl text-xs">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Level 4 -->
-                        <div class="step-page hidden" data-step="4" data-title="选择运输渠道">
-                            <h3 class="text-base font-bold text-gray-800 mb-2"><i class="fa-solid fa-truck-fast text-orange-500 mr-2"></i>第四级：渠道与时效选择</h3>
-                            <div class="space-y-2 text-xs">
-                                <label class="border p-3 rounded-xl flex justify-between items-center cursor-pointer hover:border-orange-500">
-                                    <span class="font-bold">Brossard / 蒙特利尔同城当日达</span>
-                                    <input type="radio" name="channel" class="accent-orange-500" checked>
-                                </label>
-                                <label class="border p-3 rounded-xl flex justify-between items-center cursor-pointer hover:border-orange-500">
-                                    <span class="font-bold">留学生行李空运专线 (包含双清包税)</span>
-                                    <input type="radio" name="channel" class="accent-orange-500">
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Level 5 -->
-                        <div class="step-page hidden" data-step="5" data-title="估算结果与报价明细">
-                            <h3 class="text-base font-bold text-gray-800 mb-2"><i class="fa-solid fa-file-invoice-dollar text-orange-500 mr-2"></i>第五级：最终估算结果</h3>
-                            <div class="bg-orange-50 p-4 rounded-xl border border-orange-200 mb-2">
-                                <div class="text-xs text-gray-500">预估费用（已享受 8.5 折优惠）：</div>
-                                <div class="text-2xl font-black text-orange-600">CAD $ 85.00 <span class="text-xs text-gray-400 font-normal">(或人民币折算)</span></div>
-                            </div>
-                            <p class="text-[11px] text-gray-400">注：实时调度中心将根据实际取件地址微调。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 底部导航按钮 -->
-                <div class="flex justify-between items-center pt-3 border-t border-gray-100 mt-4">
-                    <button id="prevBtn" onclick="changeStep(-1)" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-xl transition disabled:opacity-50" disabled>
-                        上一页
-                    </button>
-                    <button id="nextBtn" onclick="changeStep(1)" class="px-5 py-2 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold rounded-xl shadow-md transition">
-                        下一步
-                    </button>
-                </div>
-            </div>
-
-            <!-- 右侧：到位速递专属在线客服面板（自动匹配当前层级并链接至官方客服） -->
-            <div class="w-full md:w-80 bg-gradient-to-br from-gray-900 via-gray-800 to-black p-6 text-white flex flex-col justify-between items-center text-center relative border-l border-gray-700">
-                
-                <div class="w-full">
-                    <!-- 官方状态标签 -->
-                    <div class="flex items-center justify-center space-x-1.5 bg-white/10 py-1 px-3 rounded-full mb-4 backdrop-blur-md">
-                        <span class="w-2 h-2 bg-green-400 rounded-full animate-ping"></span>
-                        <span class="text-[11px] font-semibold text-gray-200">DaoWei Express 全球实时调度中</span>
-                    </div>
-
-                    <!-- 动态变化的服务图标与标题 -->
-                    <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-3 border border-orange-500/30">
-                        <i id="serviceIcon" class="fa-solid fa-headset text-xl text-orange-400"></i>
-                    </div>
-                    
-                    <h4 id="serviceTitle" class="text-base font-bold text-white mb-1">蒙特利尔调度中心</h4>
-                    <p id="serviceDesc" class="text-xs text-gray-300 leading-relaxed min-h-[40px]">
-                        市中心、麦吉尔大学及 Brossard 南岸专线客服实时在线。
-                    </p>
-                </div>
-
-                <!-- 自动跳出的客服操作按钮 -->
-                <div class="w-full my-4">
-                    <a id="serviceLink" href="https://tawk.to/chat/61d24aa080b2296cfdd4bcf7/1foen70rk" target="_blank" class="w-full py-3 px-4 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center space-x-2 transition transform hover:scale-[1.02]">
-                        <i class="fa-solid fa-comments text-sm"></i>
-                        <span id="serviceBtnText">联系在线客服 (0s 响应)</span>
-                    </a>
-                </div>
-
-                <!-- 多国语言与地区信息（对应原网站标示） -->
-                <div class="w-full border-t border-gray-800 pt-3 text-[11px] text-gray-400">
-                    <div class="mb-1 font-medium">🇨🇳 / 🇫🇷 / 🇬🇧 蒙特利尔 · 全球</div>
-                    <div class="text-[10px] text-gray-500">到位速递 · 全球 10 万城市物流网络</div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <!-- JavaScript 交互与动态客服更新逻辑 -->
-    <script>
-        let currentStep = 1;
-        const totalSteps = 5;
-
-        // 客服链接根地址（您提供的官方 tawk.to 客服）
-        const baseChatUrl = "https://tawk.to/chat/61d24aa080b2296cfdd4bcf7/1foen70rk";
-
-        // 分级客服文案与跳转配置
-        const stepServiceData = {
-            1: {
-                title: "同城/跨国线路调度",
-                desc: "询问 Brossard、Downtown 或全球 10 万城市具体派送范围。",
-                btnText: "咨询调度客服 (0s 响应)",
-                icon: "fa-map-location-dot",
-                stepTag: "route"
-            },
-            2: {
-                title: "留学生 8.5 折核验",
-                desc: "行李转运全场 8.5 折，在线客服帮您快速匹配特惠折扣卡。",
-                btnText: "领 8.5 折行李优惠",
-                icon: "fa-graduation-cap",
-                stepTag: "discount"
-            },
-            3: {
-                title: "包裹测重与打包指导",
-                desc: "不清楚超重或体积重如何计算？联系客服为您提供最优打包建议。",
-                btnText: "联系打包指导客服",
-                icon: "fa-box",
-                stepTag: "weight"
-            },
-            4: {
-                title: "专线时效确认",
-                desc: "同城急送与行李双清包税专线的具体取件及派送时间确认。",
-                btnText: "确认取件时效",
-                icon: "fa-clock",
-                stepTag: "shipping"
-            },
-            5: {
-                title: "官方客服直接下单",
-                desc: "已完成预估，点击即可将数据发送给客服并安排预约上门取件。",
-                btnText: "立即对接客服下单",
-                icon: "fa-circle-check",
-                stepTag: "checkout"
-            }
-        };
-
-        function openEstimatorModal() {
-            document.getElementById('estimatorModal').classList.remove('hidden');
-            updateStepDisplay();
-        }
-
-        function closeEstimatorModal() {
-            document.getElementById('estimatorModal').classList.add('hidden');
-        }
-
-        function changeStep(direction) {
-            currentStep += direction;
-            if (currentStep < 1) currentStep = 1;
-            if (currentStep > totalSteps) currentStep = totalSteps;
-            updateStepDisplay();
-        }
-
-        function updateStepDisplay() {
-            // 1. 切换 1-5 级卡片
-            const pages = document.querySelectorAll('.step-page');
-            pages.forEach((page) => {
-                const step = parseInt(page.getAttribute('data-step'));
-                if (step === currentStep) {
-                    page.classList.remove('hidden');
-                    document.getElementById('stepTitleText').innerText = page.getAttribute('data-title');
-                } else {
-                    page.classList.add('hidden');
-                }
-            });
-
-            // 2. 更新进度条与数字
-            document.getElementById('currentStepText').innerText = currentStep;
-            document.getElementById('progressBar').style.width = `${(currentStep / totalSteps) * 100}%`;
-
-            // 3. 按钮状态管理
-            document.getElementById('prevBtn').disabled = currentStep === 1;
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentStep === totalSteps) {
-                nextBtn.innerText = "完成估算";
-                nextBtn.onclick = closeEstimatorModal;
-            } else {
-                nextBtn.innerText = "下一步";
-                nextBtn.onclick = function() { changeStep(1); };
-            }
-
-            // 4. 自动更新右侧专属客服面板
-            const serviceInfo = stepServiceData[currentStep];
-            document.getElementById('serviceTitle').innerText = serviceInfo.title;
-            document.getElementById('serviceDesc').innerText = serviceInfo.desc;
-            document.getElementById('serviceBtnText').innerText = serviceInfo.btnText;
-            
-            // 将客服链接加上当前步骤的 Hash/参数
-            document.getElementById('serviceLink').href = `${baseChatUrl}?step=${serviceInfo.stepTag}`;
-            
-            // 图标更新
-            const iconElem = document.getElementById('serviceIcon');
-            iconElem.className = `fa-solid ${serviceInfo.icon} text-xl text-orange-400`;
-        }
-    </script>
-</body>
-</html>
-                <span class="text-xs bg-amber-50 text-amber-800 px-3 py-2 rounded-xl font-bold border border-amber-200 hidden sm:inline-block">🇨🇳 / 🇫🇷 / 🇬🇧 蒙特利尔 · 全球</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- 英雄区 (Hero Section) -->
-    <section class="relative bg-gray-900 text-white py-24 overflow-hidden">
-        <div class="absolute inset-0 opacity-45">
-            <img id="hero-bg-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80" alt="DaoWei Logistics Hub" class="w-full h-full object-cover transition-all duration-1000">
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span id="hero-badge" class="inline-block bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 shadow-lg">全球 10 万城市华人首选快递与物流专家</span>
-            <h1 id="hero-title" class="text-4xl sm:text-6xl font-black tracking-tight mb-4 drop-shadow-lg">让每一次跨国与同城交付准时到位</h1>
-            <p id="hero-desc" class="max-w-2xl mx-auto text-lg text-gray-200 mb-8 font-light">覆盖全球 100,000 个城市与物流网点，专为蒙特利尔及海外华人、留学生与跨境电商提供安全、快捷的国际转运与同城货运服务。</p>
-
-            <!-- 搜索与筛选面板 -->
-            <div class="max-w-4xl mx-auto bg-white p-4 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-3 text-gray-800">
-                <div class="flex-1 flex items-center px-4 py-3 bg-gray-50 rounded-xl border border-gray-100">
-                    <i class="fa-solid fa-location-dot text-orange-600 mr-3"></i>
-                    <select id="filter-zone" onchange="filterServices()" class="w-full bg-transparent outline-none text-sm font-semibold cursor-pointer">
-                        <option value="">全球 10 万城市及蒙特利尔/南岸全境</option>
-                    </select>
-                </div>
-                <div class="flex-1 flex items-center px-4 py-3 bg-gray-50 rounded-xl border border-gray-100">
-                    <i class="fa-solid fa-box-open text-orange-600 mr-3"></i>
-                    <select id="filter-category" onchange="filterServices()" class="w-full bg-transparent outline-none text-sm font-semibold cursor-pointer">
-                        <option value="">所有服务分类</option>
-                        <option value="同城快递">同城快递与急送</option>
-                        <option value="留学生搬家">留学生行李寄存搬家</option>
-                        <option value="国际转运">国际转运与回国海空运</option>
-                        <option value="商业B2B">商业大宗与仓储配送</option>
-                        <option value="机场接送">机场接送与行李随行</option>
-                    </select>
-                </div>
-                <button onclick="filterServices()" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-3 rounded-xl transition flex items-center justify-center shadow-md cursor-pointer">
-                    <i class="fa-solid fa-magnifying-glass mr-2"></i> 检索全球网点
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 车站/班次大屏动态监控专区 -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        <div class="bg-slate-900 rounded-2xl p-6 shadow-xl border border-slate-800">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-white font-bold text-lg flex items-center"><i class="fa-solid fa-truck-fast text-orange-500 mr-2"></i> 全球干线与蒙特利尔同城车次动态监控大屏</h3>
-                <span class="text-xs text-slate-400">实时智能调度中 🟢</span>
-            </div>
-            <div id="board-rows" class="space-y-2">
-                <!-- 动态生成行 -->
-            </div>
-        </div>
-    </section>
-
-    <!-- 主体产品/服务网格区 -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
-            <div>
-                <h2 class="text-2xl font-bold tracking-tight">全球 100,000 项物流专线与服务网络</h2>
-                <p class="text-sm text-gray-500">当前符合条件的路线共 <span id="service-count" class="font-semibold text-orange-600">100000</span> 项（每页显示 200 项，共 <span id="total-pages-label" class="font-semibold text-orange-600">500</span> 页）</p>
-            </div>
-            
-            <!-- 运单号追踪快捷栏 -->
-            <div class="flex items-center space-x-3 bg-white border border-gray-200 rounded-2xl p-2 shadow-sm">
-                <i class="fa-solid fa-barcode text-orange-600 ml-2"></i>
-                <input type="text" id="quick-track-input" placeholder="输入运单号 (例: DW8888)" class="text-xs outline-none bg-gray-50 px-3 py-2 rounded-lg border border-gray-100 w-40">
-                <button onclick="simulateTracking()" class="bg-gray-900 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-orange-600 transition cursor-pointer">运单追踪</button>
-            </div>
-        </div>
-
-        <!-- 路线与产品卡片网格 -->
-        <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-
-        <!-- 分页控制器 -->
-        <div id="pagination-container" class="flex flex-wrap justify-center items-center gap-1.5 mt-12"></div>
-    </main>
-
-    <!-- ==================== 底部：生成 3299 个按钮区域 ==================== -->
-    <div class="buttons-section" id="buttons-area">
-        <div class="buttons-container">
-            <div class="buttons-header">
-                <h3>📁 全球 10 万城市网页与分站快速访问按钮</h3>
-                <span class="badge">总计: 3299 个核心网页</span>
-            </div>
-            <p style="color:#888; font-size:13px; margin-bottom:15px;">您可以在下方直接搜索单号或点击任意按钮查看对应的全球城市分站网页（1.html ~ 3299.html）：</p>
-                
-            <!-- 实时搜索框 -->
-            <input type="text" id="btn-search" class="search-box" placeholder="输入编号或城市关键词快速检索（例如：888 或 巴黎/纽约/蒙特利尔）..." oninput="filterButtons()">
-                
-            <!-- 3299个按钮网格容器 -->
-            <div class="grid-buttons" id="buttons-grid"></div>
-        </div>
-    </div>
-
-    <!-- 弹窗 1：路线详情与预约 -->
-    <div id="service-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 relative shadow-2xl">
-            <button onclick="closeModal('service-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
-            <div class="flex items-center space-x-3 mb-4">
-                <div class="bg-orange-100 text-orange-600 p-3 rounded-xl"><i class="fa-solid fa-box text-xl"></i></div>
-                <div>
-                    <h3 id="modal-title" class="font-bold text-lg text-gray-900">服务路线详情</h3>
-                    <span id="modal-category" class="text-xs bg-orange-50 text-orange-600 px-2.5 py-0.5 rounded-full font-semibold">同城快递</span>
-                </div>
-            </div>
-            <p id="modal-desc" class="text-sm text-gray-600 mb-6 leading-relaxed">这里是具体的服务说明、时效保障及条款。</p>
-            
-            <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 mb-6 space-y-2 text-xs">
-                <div class="flex justify-between"><span class="text-gray-500">基础参考运费：</span><span id="modal-price" class="font-black text-orange-600 text-sm">$15.00 CAD 起</span></div>
-                <div class="flex justify-between"><span class="text-gray-500">标准时效：</span><span class="font-semibold text-gray-800">1 - 3 小时 / 国际 3-7 天</span></div>
-                <div class="flex justify-between"><span class="text-gray-500">保险保障：</span><span class="font-semibold text-emerald-600">✓ 全程保价服务 ✓ 中英法多语客服</span></div>
-            </div>
-
-            <div class="flex space-x-3">
-                <button onclick="triggerBookingSuccess()" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl text-sm transition shadow-md cursor-pointer">确认预约此线路</button>
-                <button onclick="closeModal('service-modal')" class="px-5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl text-sm transition cursor-pointer">关闭</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 弹窗 2：运费在线估算器 -->
-    <div id="estimator-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
-            <button onclick="closeModal('estimator-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
-            <div class="flex items-center space-x-3 mb-4">
-                <div class="bg-amber-100 text-amber-600 p-3 rounded-xl"><i class="fa-solid fa-calculator text-xl"></i></div>
-                <div>
-                    <h3 class="font-bold text-lg text-gray-900">到位速递运费智能估算</h3>
-                    <p class="text-xs text-gray-500">输入包裹重量与全球起止城市计算实时价格</p>
-                </div>
-            </div>
-            
-            <div class="space-y-4 text-xs">
-                <div>
-                    <label class="block font-semibold text-gray-700 mb-1">物品重量 (kg)</label>
-                    <input type="number" id="calc-weight" value="5" min="1" max="500" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl outline-none">
-                </div>
-                <div>
-                    <label class="block font-semibold text-gray-700 mb-1">服务类型</label>
-                    <select id="calc-type" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl outline-none cursor-pointer">
-                        <option value="express">全球同城急送 (Same-Day)</option>
-                        <option value="moving">留学生行李搬家</option>
-                        <option value="air">回国空运专线</option>
-                        <option value="b2b">商业大宗配送</option>
-                    </select>
-                </div>
-                <div class="bg-orange-50 border border-orange-100 p-4 rounded-xl text-center">
-                    <span class="text-gray-600 block mb-1">预计测算费用：</span>
-                    <span id="calc-result" class="text-2xl font-black text-orange-600">$25.00 CAD</span>
-                </div>
-            </div>
-
-            <div class="mt-6 flex space-x-3">
-                <button onclick="calculateCost()" class="flex-1 bg-gray-900 hover:bg-orange-600 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer">重新计算</button>
-                <button onclick="closeModal('estimator-modal')" class="px-5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl text-xs transition cursor-pointer">完成</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 底部版权 -->
-    <footer class="bg-gray-900 text-gray-400 py-12 mt-20 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-3">
-            <p>© 2026 到位速递 (DaoWei Express) 版权所有. 全球 10 万城市物流、蒙特利尔同城快递、行李寄存与跨境转运专家。</p>
-            <p class="text-gray-500">核心服务区域：全球主要国际枢纽城市及蒙特利尔岛内 (Downtown, Plateau, McGill, Concordia, Côte-des-Neiges, Griffintown) 与南岸 Brossard 等大区。</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript 逻辑：10万全球城市数据、3299个按钮及大屏动态刷新 -->
-    <script>
-        // 全球 100,000 项数据生成引擎 (使用100%版权安全的合法 Unsplash 静态开源图库)
-        (function generate100kDaoWeiDatabase() {
-            const globalZones = [
-                "蒙特利尔 - 市中心与麦吉尔大学 (Downtown & McGill)",
-                "蒙特利尔 - 南岸 Brossard 华人核心区 / 太阳广场",
-                "中国北京 - 朝阳区国贸物流枢纽",
-                "中国上海 - 浦东新区跨境电商转运中心",
-                "中国广州 - 白云区国际仓储配送基地",
-                "法国巴黎 - 戴高乐机场华人快运专线",
-                "英国伦敦 - 威斯敏斯特留学生行李服务点",
-                "美国纽约 - 曼哈顿国际物流直达网点",
-                "加拿大温哥华 - 列治文华人转运中心",
-                "日本东京 - 新宿国际同城急送网点"
-            ];
-
-            const categories = ["同城快递", "留学生搬家", "国际转运", "商业B2B", "机场接送"];
-
-            const serviceTitles = [
-                "全球文件与小件跨境闪送服务",
-                "留学生全球开学行李寄存与上门搬家",
-                "回国行李海运/空运拼箱专线",
-                "华人超市及生鲜商户同城冷链配送",
-                "宜家家具提货与专业组装上门",
-                "跨境电商一件代发与海外仓储配送",
-                "全球机场接送行李随车托运直达公寓",
-                "B2B商业急件及大宗货物全球专车直送"
-            ];
-
-            // 100% 安全合法的 Unsplash 官方开源图片链接 (无版权侵权风险)
-            const safeImages = [
-                "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80", 
-                "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=600&q=80", 
-                "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80", 
-                "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80", 
-                "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=600&q=80"  
-            ];
-
-            window.getTotalCount = () => 100000;
-            window.getServiceByIndex = function(i) {
-                const zone = globalZones[i % globalZones.length];
-                const cat = categories[i % categories.length];
-                const titleBase = serviceTitles[i % serviceTitles.length];
-                return {
-                    id: i + 1,
-                    title: `[到位速递] ${titleBase} #${i + 1}`,
-                    zone: zone,
-                    category: cat,
-                    price: 15 + (i * 13) % 250,
-                    rating: parseFloat((4.80 + (i % 20) * 0.01).toFixed(2)),
-                    image: safeImages[i % safeImages.length],
-                    ordersCount: 200 + (i * 43) % 1500,
-                    description: `全球服务网点：${zone}。到位速递为您提供标准的${cat}服务，配备中英法三语调度员，全天候保障安全准时达。`
-                };
-            };
-        })();
-
-        let currentPage = 1;
-        const pageSize = 200; // 每页展示200项，10万项共500页
-        let currentRotationIndex = 0;
-        let countdownTimer = 10;
-        let timerInterval = null;
-
-        function initWebsite() {
-            initZoneDropdown();
-            renderPaginatedServices();
-            startRotationEngine();
-            renderButtons();
-            generateBatchRows();
-        }
-
-        function initZoneDropdown() {
-            const zones = [
-                "蒙特利尔 - 市中心与麦吉尔大学 (Downtown & McGill)",
-                "蒙特利尔 - 南岸 Brossard 华人核心区 / 太阳广场",
-                "中国北京 - 朝阳区国贸物流枢纽",
-                "中国上海 - 浦东新区跨境电商转运中心",
-                "中国广州 - 白云区国际仓储配送基地",
-                "法国巴黎 - 戴高乐机场华人快运专线",
-                "英国伦敦 - 威斯敏斯特留学生行李服务点",
-                "美国纽约 - 曼哈顿国际物流直达网点",
-                "加拿大温哥华 - 列治文华人转运中心",
-                "日本东京 - 新宿国际同城急送网点"
-            ];
-            const select = document.getElementById('filter-zone');
-            select.innerHTML = '<option value="">全球 10 万城市及蒙特利尔/南岸全境</option>';
-            zones.forEach(z => {
-                select.innerHTML += `<option value="${z}">${z}</option>`;
-            });
-        }
-
-        function renderPaginatedServices() {
-            const totalCount = window.getTotalCount();
-            const selectedZone = document.getElementById('filter-zone').value;
-            const selectedCat = document.getElementById('filter-category').value;
-
-            let filteredIndices = [];
-            for (let i = 0; i < totalCount; i++) {
-                const sZone = i % 10; 
-                const sCat = i % 5;   
-                const zonesList = [
-                    "蒙特利尔 - 市中心与麦吉尔大学 (Downtown & McGill)", "蒙特利尔 - 南岸 Brossard 华人核心区 / 太阳广场",
-                    "中国北京 - 朝阳区国贸物流枢纽", "中国上海 - 浦东新区跨境电商转运中心",
-                    "中国广州 - 白云区国际仓储配送基地", "法国巴黎 - 戴高乐机场华人快运专线",
-                    "英国伦敦 - 威斯敏斯特留学生行李服务点", "美国纽约 - 曼哈顿国际物流直达网点",
-                    "加拿大温哥华 - 列治文华人转运中心", "日本东京 - 新宿国际同城急送网点"
-                ];
-                const catsList = ["同城快递", "留学生搬家", "国际转运", "商业B2B", "机场接送"];
-
-                const currentZ = zonesList[sZone];
-                const currentC = catsList[sCat];
-
-                if ((!selectedZone || currentZ === selectedZone) && (!selectedCat || currentC === selectedCat)) {
-                    filteredIndices.push(i);
-                }
-            }
-
-            const totalFiltered = filteredIndices.length;
-            const totalPages = Math.ceil(totalFiltered / pageSize) || 1;
-            if (currentPage > totalPages) currentPage = 1;
-
-            const startIndex = (currentPage - 1) * pageSize;
-            const endIndex = Math.min(startIndex + pageSize, totalFiltered);
-            
-            const currentList = [];
-            for (let i = startIndex; i < endIndex; i++) {
-                currentList.push(window.getServiceByIndex(filteredIndices[i]));
-            }
-
-            document.getElementById('service-count').textContent = totalFiltered;
-            document.getElementById('total-pages-label').textContent = totalPages;
-            
-            renderServicesGrid(currentList);
-            renderPaginationControls(totalPages);
-        }
-
-        function renderServicesGrid(list) {
-            const grid = document.getElementById('services-grid');
-            if (list.length === 0) {
-                grid.innerHTML = `<div class="col-span-full py-16 text-center text-gray-400"><i class="fa-solid fa-box-open text-4xl mb-3"></i><p>未找到符合条件的全球物流路线与网点。</p></div>`;
-                return;
-            }
-
-            grid.innerHTML = list.map(s => `
-                <div onclick="openServiceModal(${s.id})" class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col">
-                    <div class="relative h-48 overflow-hidden bg-gray-100">
-                        <img src="${s.image}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-gray-900 text-xs font-bold px-2.5 py-1 rounded-full shadow">${s.zone.split(' - ')[0] || s.zone}</span>
-                        <span class="absolute top-3 right-3 bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow"><i class="fa-solid fa-star mr-1 text-[10px]"></i>${s.rating}</span>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-xs font-bold text-orange-600 mb-1 uppercase tracking-wider"><i class="fa-solid fa-tag mr-1"></i>${s.category}</div>
-                            <h3 class="font-bold text-gray-900 line-clamp-1 mb-2 group-hover:text-orange-600 transition">${s.title}</h3>
-                            <p class="text-xs text-gray-500 line-clamp-2 mb-4">${s.description}</p>
-                        </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-gray-100">
-                            <div>
-                                <span class="text-lg font-black text-orange-600">$${s.price}</span>
-                                <span class="text-xs text-gray-400"> CAD 起</span>
-                            </div>
-                            <span class="text-xs bg-orange-50 text-orange-600 px-2.5 py-1 rounded-lg font-semibold group-hover:bg-orange-600 group-hover:text-white transition">立即预约</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderPaginationControls(totalPages) {
-            const container = document.getElementById('pagination-container');
-            if (totalPages <= 1) { container.innerHTML = ''; return; }
-
-            let html = `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="px-3.5 py-2 bg-white border rounded-xl text-xs font-medium hover:bg-gray-50 cursor-pointer">上一页</button>`;
-            
-            let startPage = Math.max(1, currentPage - 3);
-            let endPage = Math.min(totalPages, startPage + 6);
-
-            if (startPage > 1) {
-                html += `<button onclick="goToPage(1)" class="px-3 py-2 bg-white border rounded-xl text-xs font-medium hover:bg-gray-50 cursor-pointer">1</button>`;
-                if (startPage > 2) html += `<span class="px-2 text-gray-400">...</span>`;
-            }
-
-            for (let i = startPage; i <= endPage; i++) {
-                html += `<button onclick="goToPage(${i})" class="px-3.5 py-2 rounded-xl text-xs font-bold cursor-pointer ${currentPage === i ? 'bg-orange-600 text-white shadow-md' : 'bg-white border hover:bg-gray-50'}">${i}</button>`;
-            }
-
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) html += `<span class="px-2 text-gray-400">...</span>`;
-                html += `<button onclick="goToPage(${totalPages})" class="px-3.5 py-2 bg-white border rounded-xl text-xs font-medium hover:bg-gray-50 cursor-pointer">${totalPages}</button>`;
-            }
-
-            html += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="px-3.5 py-2 bg-white border rounded-xl text-xs font-medium hover:bg-gray-50 cursor-pointer">下一页</button>`;
-            container.innerHTML = html;
-        }
-
-        function changePage(page) {
-            currentPage = page;
-            renderPaginatedServices();
-            window.scrollTo({ top: 500, behavior: 'smooth' });
-        }
-
-        function goToPage(page) {
-            currentPage = page;
-            renderPaginatedServices();
-            window.scrollTo({ top: 500, behavior: 'smooth' });
-        }
-
-        function filterServices() {
-            currentPage = 1;
-            renderPaginatedServices();
-        }
-
-        // 弹窗与交互控制
-        function openServiceModal(id) {
-            const service = window.getServiceByIndex(id - 1);
-            document.getElementById('modal-title').textContent = service.title;
-            document.getElementById('modal-category').textContent = service.category;
-            document.getElementById('modal-desc').textContent = service.description;
-            document.getElementById('modal-price').textContent = `$${service.price}.00 CAD 起`;
-            document.getElementById('service-modal').classList.remove('hidden');
-        }
-
-        function openEstimatorModal() {
-            document.getElementById('estimator-modal').classList.remove('hidden');
-            calculateCost();
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-        }
-
-        function triggerBookingSuccess() {
-            alert('预约成功！到位速递全球调度中心已收到您的物流线路请求，中英法三语调度专员将在15分钟内与您联系确认。');
-            closeModal('service-modal');
-        }
-
-        function simulateTracking() {
-            const val = document.getElementById('quick-track-input').value.trim();
-            if (!val) {
-                alert('请输入有效的运单号进行查询。');
-                return;
-            }
-            alert(`运单号 [${val}] 查询成功：当前状态【已从全球枢纽分拨中心发出，正由专员派送中】，预计准时送达！`);
-        }
-
-        function calculateCost() {
-            const weight = parseFloat(document.getElementById('calc-weight').value) || 5;
-            const type = document.getElementById('calc-type').value;
-            let base = 15;
-            if (type === 'moving') base = 45;
-            if (type === 'air') base = 60;
-            if (type === 'b2b') base = 90;
-
-            const total = base + (weight * 2.5);
-            document.getElementById('calc-result').textContent = `$${total.toFixed(2)} CAD`;
-        }
-
-        // 顶部轮播调度引擎
-        function startRotationEngine() {
-            if (timerInterval) clearInterval(timerInterval);
-            updateHeroContent();
-            countdownTimer = 10;
-
-            timerInterval = setInterval(() => {
-                countdownTimer--;
-                document.getElementById('ticker-countdown').textContent = countdownTimer + 's';
-                if (countdownTimer <= 0) {
-                    currentRotationIndex = (currentRotationIndex + 1) % 5000;
-                    updateHeroContent();
-                    countdownTimer = 10;
-                }
-            }, 1000);
-        }
-
-        function updateHeroContent() {
-            const currentItem = window.getServiceByIndex(currentRotationIndex);
-            document.getElementById('ticker-route').textContent = `${currentItem.zone} - ${currentItem.category}`;
-            document.getElementById('hero-bg-img').src = currentItem.image;
-            document.getElementById('hero-title').textContent = `全球城市专属物流专线：${currentItem.category}`;
-            document.getElementById('hero-desc').textContent = currentItem.description;
-        }
-
-        // 自动生成 1 到 3299 的按钮
-        function renderButtons() {
-            const grid = document.getElementById('buttons-grid');
-            if (!grid) return;
-            let html = '';
-            for (let i = 1; i <= 3299; i++) {
-                html += `<a href="${i}.html" class="btn-item" target="_blank" title="全球城市网页 ${i}">网页 ${i}</a>`;
-            }
-            grid.innerHTML = html;
-        }
-
-        // 实时搜索过滤按钮
-        function filterButtons() {
-            const keyword = document.getElementById('btn-search').value.toLowerCase().trim();
-            const buttons = document.getElementById('buttons-grid').getElementsByClassName('btn-item');
-                
-            for (let i = 0; i < buttons.length; i++) {
-                const text = buttons[i].textContent.toLowerCase();
-                if (text.includes(keyword)) {
-                    buttons[i].style.display = 'flex';
-                } else {
-                    buttons[i].style.display = 'none';
-                }
-            }
-        }
-
-        // 车站/班次大屏动态刷新逻辑
-        const globalCitiesList = ["蒙特利尔岛内", "南岸 Brossard", "中国北京", "中国上海", "法国巴黎", "英国伦敦", "美国纽约", "加拿大多伦多", "日本东京", "中国广州"];
-        const truckTypesList = ["53尺全封闭干线大卡", "26尺尾板厢式货车", "48尺标箱冷藏卡", "24尺城际快运卡", "国际航空宽体货机"];
-        const statusList = ["🟢 全球高速干线对开中", "🔵 返程满载疾驰中", "🟡 当日折返整备中", "🟢 准点到达国际分拨中心"];
-
-        function generateBatchRows() {
-            const container = document.getElementById('board-rows');
-            if (!container) return;
-            let html = '';
-            for(let i = 1; i <= 5; i++) {
-                let origin = globalCitiesList[Math.floor(Math.random() * globalCitiesList.length)];
-                let dest = globalCitiesList[Math.floor(Math.random() * globalCitiesList.length)];
-                let truckId = `DW-${Math.floor(Math.random() * 89999) + 10000}`;
-                let truck = truckTypesList[Math.floor(Math.random() * truckTypesList.length)];
-                let status = statusList[Math.floor(Math.random() * statusList.length)];
-                html += `
-                    <div class="train-row">
-                        <div class="truck-id">${truckId}</div>
-                        <div class="route-path">${origin} ⇄ ${dest}</div>
-                        <div><span class="freq-tag">全球班次</span></div>
-                        <div style="font-size:12px; color:#cbd5e1;">2026年10月专线</div>
-                        <div style="font-size:11px; color:#94a3b8;">${truck}</div>
-                        <div class="status-running">${status}</div>
-                    </div>
-                `;
-            }
-            container.innerHTML = html;
-        }
-
-        window.onload = initWebsite;
+
+<body>
+
+<div id="body-wrapper">
+
+	
+
+	<div id="header-wrapper" style="background:url(../../res/img/banner1_top@2x.webp) 0% 0%;background-size:auto 100%;border-bottom:3px solid #ccc;">
+
+		<div id="top">
+
+			<div class="container">
+
+				<div class="row">
+
+					<div class="col s-12">
+
+						<a target="_blank" href="https://www.回国行李.top"><img src="../../res/img/top_lang.png">English</a>
+
+						<a href="../../wechat.html"><img src="../../res/img/top_wechat.png">微信</a>
+
+						<a href="../../ucenter/index.html"><img src="../../res/img/top_ucenter.png">客户中心</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="header">
+
+			<div class="container">
+
+				<div class="row">
+
+					<div class="col s-12">
+
+						<div class="logo"><a href="../../index.html"><img alt="到位海运1.8/一公斤搬家" src="../../res/img/logo@2x.png"></a></div>
+
+						<nav class="nav-collapse">
+
+							<ul>
+
+								<li><a href="../../index.html">首页</a></li>
+
+								<li><a href="../../service.html">服务介绍</a></li>
+
+								<li class="current"><a href="../../network/index.html">全球网络</a></li>
+
+								<li><a href="../../case/index.html">客户案例</a></li>
+
+								<li><a href="../../review.html">客户评价</a></li>
+
+								<li><a href="../../experience/index.html">搬家经验</a></li>
+
+								<li><a href="../../estimate.html">体积预估</a></li>
+
+								<li><a href="../../contact.html">联系我们</a></li>
+
+								<li><a href="../../quote.html">在线询价</a></li>
+
+							</ul>
+
+						</nav>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="breadcrumb" class="s-0 m-12">
+
+			<div class="container">
+
+				<div class="row">
+
+				  <div class="col s-0 m-12">
+
+					<span><a href="../../index.html">首页</a></span> &raquo;
+
+					<span>全球网络</span>
+
+									  </div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+<div class="content">
+
+    <div class="container">
+
+	<div class="row">
+
+		<div class="col s-0 m-4 l-3 x-3">
+
+	<div id="sider">
+
+		<div class="siderMenu clearfix">
+
+			<h4>网站导航</h4>
+
+			<div class="row">
+
+				<div class="col s-6"><a href="../../experience/index.html">搬家经验</a></div>
+
+				<div class="col s-6"><a href="../../news/index.html">新闻资讯</a></div>
+
+				<div class="col s-6"><a href="../../case/index.html">客户案例</a></div>
+
+				<div class="col s-6"><a href="../../review.html">客户评价</a></div>
+
+				<div class="col s-6"><a href="../../network/index.html">全球网络</a></div>
+
+				<div class="col s-6"><a href="../../quote.html">在线询价</a></div>
+
+				
+
+				<div class="col s-6 gray"><a href="../../real.html">回国行李1.8一公斤</a></div>
+
+				<div class="col s-6 gray"><a href="../../service.html">服务介绍</a></div>
+
+				<div class="col s-6 gray"><a href="../../contact.html">联系我们</a></div>
+
+				<div class="col s-6 gray"><a href="../../diy.html">订单追踪</a></div>
+
+			</div>
+
+		</div>
+
+		<div class="siderMust clearfix">
+
+			<h4>国际搬家必读</h4>
+
+				<ul>
+
+					<li><a href="../../cheat.html">国际搬家5大坑和3招避雷</a></li>
+
+					<li><a href="../../real.html">真·国际搬家公司</a></li>
+
+					<li><a href="../../slander.html">到位速递是怎么被黑的</a></li>
+
+					<li><a href="../../service.html">到位海运1.8/一公斤搬家服务介绍</a></li>
+
+					<li><a href="../../process.html">到位海运1.8/一公斤搬家业务流程</a></li>
+					<li><a href="../../forbidden.html">各国海关限、禁运物品</a></li>
+					<li><a href="../../insurance.html">到位海运1.8/一公斤搬家一切险</a></li>
+
+					<li class="last"><a href="../../faq.html">国际搬家常见问题</a></li>
+
+				</ul>
+
+		</div>
+		
+		<div class="banner clearfix">
+			<ul>
+
+				<li><a href="../../news/iam-member.html"><div class='sbanner' style='width:100%;height:50px;padding:8px 20px 0;text-align:center;color:#fff;background:linear-gradient(to bottom, rgba(198,40,40,1),rgba(198,40,40,.5))'><span>国际搬家协会(IAM)<br>会员资格认证</span></div></a></li>
+				<li><a href="../../real.html"><div class='sbanner' style='width:100%;height:50px;padding:8px 20px 0;text-align:center;color:#fff;background:linear-gradient(to bottom, rgba(85,139,47,1), rgba(85,139,47,.5))'><span>为什么到位海运1.8/一公斤搬家是<br>真·国际搬家公司？</span></div></a></li>
+
+				<li><a href="../../diy.html"><div class='sbanner' style='width:100%;height:50px;padding:8px 20px 0;text-align:center;color:#fff;background:linear-gradient(to bottom, rgba(21,101,192,1), rgba(21,101,192,.5))'><span>"订单客户页"<br>简约却不简单的订单追踪系统</span></div></a></li>
+			</ul>
+		</div>
+		
+
+		<div class="siderDestination clearfix">
+
+			<h4>国际搬家目的国/地区</h4>
+
+			<div class="row">
+
+					<div class="col s-0 m-4 x-3"><a href="../../network/country/US.html">
+
+						<img class="img-rsp" alt="美国" src="../../res/img/flag/us.png">美国</a></div>
+
+					<div class="col s-0 m-4 x-3"><a href="../../network/country/CA.html">
+
+						<img class="img-rsp" alt="加拿大" src="../../res/img/flag/ca.png">加拿大</a></div>
+
+					<div class="col s-0 m-4 x-3"><a href="../../network/country/AU.html">
+
+						<img class="img-rsp" alt="澳大利亚" src="../../res/img/flag/au.png">澳洲</a></div>
+
+					<div class="col s-0 m-4 x-3"><a href="../../network/country/JP.html">
+
+						<img class="img-rsp" alt="日本" src="../../res/img/flag/jp.png">日本</a></div>
+
+					<div class="col s-0 m-4 x-3"><a href="../../network/country/SG.html">
+
+						<img class="img-rsp" alt="新加坡" src="../../res/img/flag/sg.png">新加坡</a></div>
+
+					<div class="col s-0 m-4 x-3"><a href="../../network/country/DE.html">
+
+						<img class="img-rsp" alt="德国" src="../../res/img/flag/ge.png">德国</a></div>
+
+					<div class="col s-0 m-4 x-3"><a href="../../network/country/NZ.html">
+
+						<img class="img-rsp" alt="新西兰" src="../../res/img/flag/nz.png">新西兰</a></div>
+
+					<div class="col s-0 m-4 x-3"><a href="../../network/index.html">
+
+						<img class="img-rsp" alt="更多国家/地区" src="../../res/img/flag/no.png">更多</a></div>
+
+			</div>
+
+		</div>
+		
+
+		<div class="clear"></div>
+		
+
+	</div>
+
+</div><!-- end #sidebar -->		
+
+		
+
+						<div class="col s-12 m-8 l-9 x-9"><div class="page">
+
+					<h2 class="page-title">贝尼(El Beni)海运搬家出国/回国,家具行李海运公司</h2>
+
+					<div class="page-content">
+
+						<div class='NetworkCityPic' data-id='404'></div><p><strong>到位海运1.8/一公斤</strong>长期经营中国到贝尼，以及贝尼到中国的国际海运搬家、国际快递、国际贸易及展览品运输、仓储/转运等业务。到位速递公司总部设立于中国上海，与多家优质的玻利维亚供应商有长期而深厚的合作关系，在贝尼具备业务能力。</p><p>到位速递坚持无隐藏的一口价承诺，根据不同客户的需求提供拼箱/整柜/团运/门到门等多元化运输方式个性化定制，全程托管式的售后服务、标准化的业务流程、完善的保险及赔偿体系，是值得信赖的贝尼(El Beni)海运搬家出国/回国,家具行李海运公司。</p><div class='NetworkCustomsGuide' data-iso2='BO' data-n='玻利维亚'></div><div class='row'><div style='padding: 10px 10px; margin:0 10px 20px; background: #eee;border:1px solid #ddd'>贝尼(El Beni)，位于玻利维亚。<div class='clear'></div></div></div><h6>贝尼服务范围</h6><p><a href="../../service.html" target='_blank' class='btn blue' style='color:#fff;text-decoration:none'>服务介绍</a> <a href="../../case/index.html" target='_blank' class='btn blue' style='color:#fff;text-decoration:none'>客户案例</a> <a href="../../review.html" target='_blank' class='btn blue' style='color:#fff;text-decoration:none'>客户评价</a> <a href="../../contact.html" target='_blank' class='btn blue' style='color:#fff;text-decoration:none'>联系我们</a></p><div class='row'><div style='padding: 10px 10px; margin:0 10px 20px; background: #DCEDC8;border:1px solid #C5E1A5'>贝尼在到位海运1.8/一公斤业务覆盖范围内，运输渠道覆盖：<strong>海运，空运，</strong>欢迎与我们联系进行业务洽谈。<div class='clear'></div></div></div><p><strong>运输服务</strong>：中国海运到贝尼、贝尼海运回国、中国空运到贝尼、贝尼空运回国、中国铁运/联运/寄快递到贝尼、贝尼铁运/联运/寄快递回国</p><p><strong>解决方案</strong>：贝尼搬家回国/中国搬家到贝尼、行李包裹海空运快递、贝尼国际展会运输、贝尼国际散杂与大件货物运输</p><p><strong>服务特色</strong>：贝尼双清关门到门一站式服务、免费仓储、国际搬家一切险</p>					</div></div>
+
+					<div class="clear"></div>
+
+				</div>
+
+					</div>
+
+	</div>
+
+</div>
+
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col s-12 m-6">
+					<div><a class="payment" href="../../pay.html" alt="支付方式" title="支付方式"></a></div>
+					<div>
+						<a href="../../service.html">服务介绍</a> | 
+						<a href="../../domestic.html">国内业务</a> | 
+						<a href="../../case/index.html">客户案例</a> | 
+						<a href="../../review.html/index.html">客户评价</a> | 
+						<a href="../../contact.html">联系我们</a> |
+						<a href="../../quote.html">在线询价</a>
+					</div>
+					<div>
+						<a href="../../network/index.html">全球网络</a> |
+						<a href="../../network/country/CN.html">中国城市</a> |
+						<a href="../../experience/index.html">搬家经验</a> | 
+						<a href="../../news/index.html">新闻资讯</a> | 
+						<a href="javascript:void(0)" onclick="$('#consent').show();">Cookies</a>
+					</div>
+					<div>Email: &#105;&#110;&#102;&#111;&#064;&#115;&#101;&#097;&#112;&#111;&#101;&#046;&#099;&#111;&#109;</div>
+					<div>Tel: +14382287888  (Overseas) </div>
+				</div>
+				<div class="col s-12 m-6">
+					<div>&copy; 2026 到位速递</div>
+					<div>
+						<a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">到位国际搬家微信fundes  电话 4382287888</a>
+						<a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="nofollow">到位速递</a>
+						<a href="../../_cdn/www.回国行李.top.cc/public/license.jpg" target="_blank" rel="nofollow">营业执照</a>
+					</div>
+					<span>
+						<a href="../../_cdn/www.回国行李.top.cc" target="_blank">到位海运1.8/一公斤</a>
+						<a href="../../index.html" target="_blank">国际搬家</a>
+						<a href="https://www.shippingwhale.com" target="_blank">国际物流</a>
+						<a href="../../city-compare/index.html" target="_blank">城市对比</a>
+					</span>
+					<span class="v s-0 m-0">
+					<a onclick="javascript:void(0);">
+						<img width="74" height="27" src="../../res/img/v_0.png"/></a> 
+					<a onclick="javascript:void(0);">
+						<img width="74" height="27" src="../../res/img/v_2.png"/></a> 
+					<a onclick="javascript:void(0);">
+						<img width="74" height="27" src="../../res/img/v_3.png"/></a> 
+					<a onclick="javascript:void(0);">
+						<img width="74" height="27" src="../../res/img/v_4.png"/></a> 
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div><!-- body-wrapper end -->
+		<div class="s-12 m-0" id="mobToggle" style="position:fixed;width:100%;color:#fff;padding:10px;bottom:-90px;background:rgba(0,0,0,0.7)">
+		<div id="mobToggleBtn" style="position:absolute;right:0px;top:-80px;background:url(../../res/img/arrow2.png);width:80px;height:80px;"></div>
+		<div style="margin-bottom:5px;">您可能正在手机设备上访问本站，您可以：</div>
+		<a id="MobTel" class="mobTel" href="tel:4000125052" style="color:#fff;display:inline-block;width:80px;padding:5px;margin:0 10px 0 0;border:1px solid #fff;">点击拨打<br><strong>国内热线</strong></a>
+		<a id="MobTel_o" class="mobTel" href="tel:+862159105217" style="color:#fff;display:inline-block;width:80px;padding:5px;margin:0 10px 0 0;border:1px solid #fff;">点击拨打<br><strong>海外热线</strong></a>
+		<a id="MobWxkf" class="mobWxkf" target="_blank" href="https://work.weixin.qq.com/kfid/kfc57792377a8dcceda" style="color:#fff;display:inline-block;width:80px;padding:5px;border:1px solid #fff;">点击开始<br><strong>微信对话</strong></a>
+	</div>
+		<div id="consent" style="display:none">
+		<div style="margin-bottom:5px;"><div style="font-size:14px;margin-bottom:5px;"><b>本站使用Cookies</b></div><div style="color:rgba(255,255,255,.7);margin-bottom:5px">到位速递珍视您的隐私，遵循欧盟通用数据保护条例(GDPR)：我们仅使用Google Analytics进行网站数据统计，除此以外不会利用Cookies储存、分享或分析您的个人数据。<br>您可以在页面底部调整Cookies设置。</div></div>
+		<a href="javascript:void(0)" onclick="setConsent(0)" style="color:rgba(255,255,255,.7);display:inline-block;width:80px;padding:5px;margin:0 10px 0 0;border:1px solid rgba(255,255,255,.7);">拒绝</a>
+		<a href="javascript:void(0)" onclick="setConsent(1)" style="color:#fff;display:inline-block;width:80px;padding:5px;margin:0 10px 0 0;border:1px solid #fff;"><strong>同意</strong></a>
+	</div>
+	
+	<script src="../../res/lib/responsive-nav.min.js"></script>
+		<script>
+			var nav = responsiveNav(".nav-collapse", { animate: true,transition: 284,label: "Menu",insert: "before",customToggle: "",closeOnNavClick: false,openPos: "relative",navClass: "nav-collapse",navActiveClass: "js-nav-active",jsClass: "js" });
+		</script>
+	<script src="../../res/lib/js.cookie.min.js"></script>
+	<script src="../../res/lib/sweetalert2.all.min.js"></script>
+	<script src="../../res/lib/jquery.min.js"></script>
+	<script src="../../res/lib/jquery.formalize.min.js"></script>
+	<script src="../../res/lib/libphonenumber-js.min.js"></script>
+	<!-- JS Start-->
+	<script>
+		const sweatError = Swal.mixin({title:"出错了:(",icon: 'error', confirmButtonColor: '#999', confirmButtonText: '好的',});
+		const sweatSuccess = Swal.mixin({title:"完成了:)",icon: 'success', confirmButtonColor: '#999', confirmButtonText: '好的',});
+		$(function(){
+			//consent
+			if(!Cookies.get('consent')){
+				$("#consent").show();
+			}else{
+				$("#consent").hide();
+				if(Cookies.get('consent')=='0')gtag('consent','update',{'ad_user_data':'denied','ad_personalization':'denied','ad_storage':'denied','analytics_storage':'denied'});
+				else gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});
+			}
+			//Office Animation
+			var isActive=true;
+			window.onfocus = function () { isActive = true; }; 
+			window.onblur = function () { isActive = false; }; 
+			if($("#office").length>0){
+				setInterval(function(){
+					if(isActive){
+						if($("#office-img").position().left>-1500){
+							$("#office-img").animate({left:'-=200px',},300); 
+						}else{
+							$("#office-img").animate({left:'0px',},0); 
+							$("#office-img").animate({left:'-=200px',},300); 
+						}
+					}
+				}, 3000);
+			}
+			//NewOrders & Animation
+			if($("#neworders").length>0||$("#newordersmob").length>0){
+				$.post("/usr/themes/nept_02/ajax.php", {"action":"neworders"}, function(data){
+					var newordershtml="";
+					for(var i=0;i<data.length;i++){
+						newordershtml=newordershtml+"<div class='order'><span>"+data[i]['dn']+"</span><span class='orders-dt'>"+data[i]['dt']+"</span><br><span>"+data[i]['o']+"->"+data[i]['d']+"</span><br><span>"+data[i]['type']+"</span></div>";
+					}
+					$("#neworders").html(newordershtml);
+					setInterval(function(){
+						if(isActive){
+							if($("#neworders.orders").position().top>-675){
+								$("#neworders.orders").animate({top:'-=75px',},300); 
+							}else{
+								$("#neworders.orders").animate({top:'-=75px',},150); 
+								$("#neworders.orders").animate({top:'75px',},0); 
+								$("#neworders.orders").animate({top:'-=75px',},150); 
+							}
+						}
+					}, 3000);
+					var newordersmobhtml="";
+					for(var i=0;i<data.length;i++){
+						newordersmobhtml=newordersmobhtml+"<div class='order' style='color:#444;width:100%;margin-bottom:7px;background:rgba(255,255,255,.5);padding:0 5px;border-radius:10px;height:18px;line-height:18px;overflow:hidden'><span style='font-family:Consolas;display:inline-block;width:95px;'>"+data[i]['dn']+"</span><span style='display:inline-block;width:60px;'>"+data[i]['type']+"</span><span style='display:inline-block;'>"+data[i]['o']+"->"+data[i]['d']+"</span></div>";
+					}
+					$("#newordersmob").html(newordersmobhtml);
+					setInterval(function(){
+						if(isActive){
+							if($("#newordersmob.orders").position().top>-225){
+								$("#newordersmob.orders").animate({top:'-=25px',},300); 
+							}else{
+								$("#newordersmob.orders").animate({top:'-=25px',},150); 
+								$("#newordersmob.orders").animate({top:'25px',},0); 
+								$("#newordersmob.orders").animate({top:'-=25px',},150); 
+							}
+						}
+					}, 3000);
+				},"json");
+			}
+			//mobToggle
+			if($("#mobToggle").length>0){
+				$("#mobToggleBtn").click(function(event){
+					if($("#mobToggle").css('bottom')=='0px'){
+						$("#mobToggle").animate({bottom:'-90px',},150);
+						$("#mobToggleBtn").animate({top:'-80px',},150).css('background','url(/res/img/arrow2.png)');
+						$("#consent").animate({bottom:'10px',},150);
+					}else{
+						$("#mobToggle").animate({bottom:'0px',},150);
+						$("#mobToggleBtn").animate({top:'0px',},150).css('background','url(/res/img/arrow.png)');
+						$("#consent").animate({bottom:'100px',},150);
+					}
+				});
+				$(".mobTel").click(function(event){
+					gtag('event', 'MobTelClick');
+				});
+				$(".mobWxkf").click(function(event){
+					gtag('event', 'MobWxkfClick');
+				});
+			}
+			if($(".wxkf").length>0){
+				$(".wxkf").click(function(event){gtag('event', 'WxkfClick');});
+			}
+			
+							if($(".NetworkCityPic").length>0){
+					$.get("https://www.www.回国行李.top.cc/public/api.php?do=getCity&id="+$(".NetworkCityPic").attr("data-id"),function(imgExist){
+						if(imgExist=='1')
+							$(".NetworkCityPic").html("<img style='border-radius:10px;margin-bottom:15px' alt='贝尼(El Beni)海运搬家出国/回国,家具行李海运公司' src="../../_cdn/www.回国行李.top.cc/public/cloud/sw_city/index.html"+$(".NetworkCityPic").attr("data-id")+".jpg">");
+					});
+				}
+				if($(".NetworkCountryPic").length>0){
+					$.get("https://www.www.回国行李.top.cc/public/api.php?do=getCountry&iso2="+$(".NetworkCountryPic").attr("data-id"),function(imgExist){
+						if(imgExist=='1')
+							$(".NetworkCountryPic").html("<img style='border-radius:10px;margin-bottom:15px' alt='贝尼(El Beni)海运搬家出国/回国,家具行李海运公司' src="../../_cdn/www.回国行李.top.cc/public/cloud/sw_country/index.html"+$(".NetworkCountryPic").attr("data-id")+".jpg">");
+					});
+				}
+				if($(".NetworkCustomsGuide").length>0){
+					$.get("https://www.www.回国行李.top.cc/public/api.php?do=getGuide&iso2="+$(".NetworkCustomsGuide").attr("data-iso2")+"&n="+$(".NetworkCustomsGuide").attr("data-n"),function(guideData){
+						if(guideData!='0')
+							$(".NetworkCustomsGuide").html(guideData);
+					});
+				}
+					});
+		function setConsent(v){
+			Cookies.set('consent', v , { expires: 180 });
+			$("#consent").hide();
+			if(Cookies.get('consent')=='0')gtag('consent','update',{'ad_user_data':'denied','ad_personalization':'denied','ad_storage':'denied','analytics_storage':'denied'});
+			else gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});
+		}
+		function saveQuote(failed){
+			var qU= location.protocol+'//'+location.hostname+"/usr/themes/nept_02/ajax.php";
+			$.ajax({
+				type: "POST",
+				url:qU,
+				data:$('#quote').serialize(),
+				async: true,
+				error: function(request) { 
+					if(failed==0){
+						gtag('event', 'EnquirySubmitFailure');
+						sweatError.fire({text:"询价表单提交失败: 原因未知"});
+						$(".submit").attr("href","javascript:quoteSubmit()"); 
+						$(".submit").text("提交询价"); 
+					}
+				},
+				success: function(data) {
+					if(failed==0){
+						if(data=="1"){
+							//google
+							gtag('event', 'EnquirySubmitSuccess');
+							//bing
+							window.uetq = window.uetq || [];
+							window.uetq.push('event', 'EnquirySubmitSuccess', {});
+							//baidu
+							window._agl && window._agl.push(['track', ['success', {t: 3}]])//百度
+							$('#quote').each (function(){this.reset();});
+							sweatSuccess.fire({text:"询价表单提交成功，我们会尽快与您沟通报价"});
+						}else{
+							gtag('event', 'EnquirySubmitFailure');
+							sweatError.fire({text:"询价表单提交失败: 原因未知"});
+						}
+						$(".submit").attr("href","javascript:quoteSubmit()"); 
+						$(".submit").text("提交询价"); 
+					}
+				}
+			});
+		}
+		function quoteSubmit(){
+			$(".submit").attr("href","javascript:void(0)"); 
+			$(".submit").text("提交中.."); 
+			var arr=["o1","o2","d1","d2","w","phone","zone"];
+			var err=0;
+			for(var i=0; i<arr.length; i++){
+				if($("#"+arr[i]).val()==""){
+					$("#"+arr[i]).attr("class","error");
+					err+=1;
+				}else{
+					$("#"+arr[i]).attr("class","");
+				}
+			}
+			if (err>0){
+				sweatError.fire({text:"询价表单提交失败: 表单填写不完整/有错误"});
+				$(".submit").attr("href","javascript:quoteSubmit()"); 
+				$(".submit").text("提交询价");
+			}else{
+				var qcount;
+				if(!Cookies.get('qcount'))qcount=0;else qcount=Cookies.get('qcount');
+				if(qcount<3){
+					const phoneNumber = libphonenumber.parsePhoneNumberFromString($("#phone").val(),$("#zone").val());
+					if(phoneNumber && phoneNumber.isValid()){
+						$("#phone").attr("class","");
+						$('#validphone').val(phoneNumber.format("E.164"));
+						saveQuote(0);
+						
+						qcount++;
+						Cookies.set('qcount', qcount , { expires: 1 });
+					}else{
+						$("#phone").attr("class","error");
+						sweatError.fire({text:"询价表单提交失败: 您填写的手机号码不符合规范"});
+						$(".submit").attr("href","javascript:quoteSubmit()"); 
+						$(".submit").text("提交询价");
+					}
+				}else{
+					sweatError.fire({text:"询价表单提交失败: 您提交表单的次数太多了"});
+					$(".submit").attr("href","javascript:quoteSubmit()"); 
+					$(".submit").text("提交询价"); 
+				}
+				
+			}
+		}
+			</script>
+	<!-- JS End-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('consent','default',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});
+	</script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4D68RVQNZ"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-H4D68RVQNZ');
+	</script>
+	<!-- Bing -->
+	<script>
+		(function(w,d,t,r,u)
+		{
+			var f,n,i;
+			w[u]=w[u]||[],f=function()
+			{
+				var o={ti:"343212732", enableAutoSpaTracking: true};
+				o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
+			},
+			n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function()
+			{
+				var s=this.readyState;
+				s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
+			},
+			i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
+		})
+		(window,document,"script","//bat.bing.com/bat.js","uetq");
+	</script>
+	<!-- Baidu -->
+	<script type="text/javascript">
+        window._agl = window._agl || [];
+        _agl.push(['production', '_f7L2XwGXjyszb4d1e2oxPybgD']);
+        // 延迟到 window.load 后注入，避免加载失败/超时影响页面主资源的加载
+        window.addEventListener('load', function () {
+            var agl = document.createElement('script');
+            agl.type = 'text/javascript';
+            agl.async = true;
+            agl.src = 'https://fxgate.baidu.com/angelia/fcagl.js?production=_f7L2XwGXjyszb4d1e2oxPybgD';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(agl, s);
+        });
     </script>
 </body>
 </html>
